@@ -1,5 +1,6 @@
 # FISE-ESIEA-WEBDEV-2025  
 Gestion de projet  
+CAHIER DE CHARGES
 RGPD et normes  
 Régles de nommages  
 SEO  
@@ -10,6 +11,10 @@ MYSQL
 PHP FONCTIONNEL PROCEDURALE  
 JAVASCRIPT  
 PHP POO  
+SYMFONY
+REACT JS
+NODE JS
+
 
 
 
