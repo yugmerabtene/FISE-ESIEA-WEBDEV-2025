@@ -69,7 +69,9 @@
 - Structure de base d'une page HTML5  
 - Balises sémantiques (header, section, article, etc.)  
 - Intégration de CSS pour le style et la mise en page  
-- Responsive design et médias queries  
+- Responsive design et médias queries
+---
+Chapitre 8 bis : Framework CSS Bootstrap  
 
 ---
 
@@ -118,6 +120,8 @@
 - AJAX et communication asynchrone  
 
 ---
+Chapitre 14 bis Wordpress  
+---
 
 ### **Chapitre 15 : PHP orienté objet (POO)**  
 - Concepts de base de la POO (classes, objets, héritage, etc.)  
@@ -136,7 +140,9 @@
   - Composants et état  
 - **Node JS** :  
   - Backend et APIs  
-  - Intégration avec des projets full-stack  
+  - Intégration avec des projets full-stack
+- **Java Spring** :
+  - Backend avec Java Spring
 
 ---
 
