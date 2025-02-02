@@ -2,7 +2,7 @@
 
 ## **Introduction**  
 
-La charte graphique est un document qui définit l'identité visuelle d'un site web ou d'une application. Elle assure une cohérence visuelle et renforce la reconnaissance de la marque. Une charte bien conçue facilite le travail des développeurs et designers en définissant des règles précises sur les couleurs, typographies, icônes, mises en page et autres éléments graphiques.  
+Une charte graphique est un document qui définit l'identité visuelle d'un site web ou d'une application. Elle assure une cohérence visuelle et renforce la reconnaissance de la marque. Une charte bien conçue facilite le travail des développeurs et designers en définissant des règles précises sur les couleurs, typographies, icônes, mises en page et autres éléments graphiques.  
 
 Ce chapitre couvre les principes fondamentaux du design graphique, le choix des éléments visuels, leur intégration dans le développement web ainsi que les outils utilisés pour leur création.  
 
