@@ -13,8 +13,7 @@
 ---
 
 ### **Chapitre 2 : Cahier des charges**  
-- Rédaction d'un cahier des charges fonctionnel et technique  
-- Création d'une charte graphique pour le web  
+- Rédaction d'un cahier des charges fonctionnel et technique
 
 ---
 
