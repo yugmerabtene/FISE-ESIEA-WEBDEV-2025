@@ -13,7 +13,7 @@
 ---
 
 ### **Chapitre 2 : Cahier des charges**  
-- Rédaction d'un cahier des charges fonctionnel et technique
+- Rédaction d'un cahier des charges.
 
 ---
 
