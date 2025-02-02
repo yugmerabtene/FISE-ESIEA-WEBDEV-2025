@@ -1,7 +1,3 @@
-Voici une proposition de structuration du cours en chapitres, en tenant compte de la progression logique et des dépendances entre les différents sujets :
-
----
-
 ### **Chapitre 1 : Introduction à la gestion de projet**
 - Définition et importance de la gestion de projet
 - Méthodologies (Agile, Waterfall, etc.)
