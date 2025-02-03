@@ -69,13 +69,11 @@
 - Structure de base d'une page HTML5  
 - Balises sémantiques (header, section, article, etc.)  
 - Intégration de CSS pour le style et la mise en page  
-- Responsive design et médias queries
----
-Chapitre 8 bis : Framework CSS Bootstrap  
+- Responsive design et médias queries  
 
 ---
 
-### **Chapitre 9 : Règles de nommage et bonnes pratiques**  
+### **Chapitre 09 : Règles de nommage et bonnes pratiques**  
 - Importance des conventions de nommage  
 - Règles pour les fichiers, variables, bases de données, etc.  
 - Bonnes pratiques pour la maintenance et la collaboration  
@@ -96,8 +94,15 @@ Chapitre 8 bis : Framework CSS Bootstrap
 - Outils d'analyse SEO (Google Analytics, Search Console)  
 
 ---
+### **Chapitre 12 : Framework CSS Bootstrap**  
+- Introduction à Bootstrap et ses avantages  
+- Grille responsive et système de layout  
+- Composants prédéfinis (navbar, cards, modals, etc.)  
+- Personnalisation et intégration dans un projet web  
 
-### **Chapitre 12 : Bases de données avec MySQL**  
+---
+
+### **Chapitre 13 : Bases de données avec MySQL**  
 - Introduction aux bases de données relationnelles  
 - Création et gestion de tables  
 - Requêtes SQL de base (SELECT, INSERT, UPDATE, DELETE)  
@@ -105,7 +110,7 @@ Chapitre 8 bis : Framework CSS Bootstrap
 
 ---
 
-### **Chapitre 13 : PHP procédural**  
+### **Chapitre 14 : PHP procédural**  
 - Syntaxe de base de PHP  
 - Variables, boucles, conditions et fonctions  
 - Interaction avec les formulaires HTML  
@@ -113,17 +118,23 @@ Chapitre 8 bis : Framework CSS Bootstrap
 
 ---
 
-### **Chapitre 14 : JavaScript**  
+### **Chapitre 15 : JavaScript**  
 - Introduction à JavaScript et son rôle dans le développement web  
 - Manipulation du DOM  
 - Événements et interactions utilisateur  
 - AJAX et communication asynchrone  
 
 ---
-Chapitre 14 bis Wordpress  
+
+### **Chapitre 16 : WordPress**  
+- Introduction à WordPress et son écosystème  
+- Installation et configuration de WordPress  
+- Création de thèmes et plugins  
+- Gestion de contenu et optimisation pour le SEO  
+
 ---
 
-### **Chapitre 15 : PHP orienté objet (POO)**  
+### **Chapitre 17 : PHP orienté objet (POO)**  
 - Concepts de base de la POO (classes, objets, héritage, etc.)  
 - Encapsulation, abstraction, polymorphisme  
 - Utilisation de la POO pour structurer des projets PHP  
@@ -131,7 +142,7 @@ Chapitre 14 bis Wordpress
 
 ---
 
-### **Chapitre 16 : Frameworks modernes**  
+### **Chapitre 18 : Frameworks modernes**  
 - **Symfony** :  
   - Architecture MVC  
   - Bundles et composants  
@@ -140,13 +151,13 @@ Chapitre 14 bis Wordpress
   - Composants et état  
 - **Node JS** :  
   - Backend et APIs  
-  - Intégration avec des projets full-stack
-- **Java Spring** :
-  - Backend avec Java Spring
+  - Intégration avec des projets full-stack  
+- **Java Spring** :  
+  - Backend avec Java Spring  
 
 ---
 
-### **Chapitre 17 : Déploiement et monitoring**  
+### **Chapitre 19 : Déploiement et monitoring**  
 - Déploiement d'applications sur des serveurs distants  
 - Utilisation de conteneurs (Docker) et orchestration (Kubernetes)  
 - Surveillance et monitoring des applications (Prometheus, Grafana, etc.)  
@@ -154,7 +165,7 @@ Chapitre 14 bis Wordpress
 
 ---
 
-### **Chapitre 18 : Projet final et bonnes pratiques**  
+### **Chapitre 20 : Projet final et bonnes pratiques**  
 - Mise en pratique des connaissances acquises  
 - Développement d'un projet web complet  
 - Déploiement et maintenance  
@@ -162,7 +173,8 @@ Chapitre 14 bis Wordpress
 
 ---
 
-### **Chapitre 19 : Conclusion et perspectives**  
+### **Chapitre 21 : Conclusion et perspectives**  
 - Synthèse des compétences acquises  
 - Perspectives d'évolution dans le domaine du développement web  
 - Ressources pour approfondir les connaissances  
+
