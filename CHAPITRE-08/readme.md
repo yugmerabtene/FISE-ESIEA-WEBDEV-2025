@@ -1,5 +1,3 @@
-# Cours Complet sur HTML, CSS et HTML Sémantique
-
 ## 1. Introduction à HTML (HyperText Markup Language)
 HTML est le langage standard pour la création de pages web. Il permet de structurer le contenu à l'aide d'éléments (ou balises). Chaque élément définit une partie du document comme un paragraphe, une image, un lien ou une liste.
 
@@ -110,6 +108,156 @@ HTML sémantique signifie utiliser des balises qui ont une signification claire,
 - `<root>` : Définit un conteneur racine principal pour regrouper tout le contenu HTML
 
 ---
+# Cours complet sur CSS : Marges, Espacements, Dimensions et Flexbox
+
+## 1. Marges, Espacements et Bordures
+
+### 1.1 `margin`
+La propriété `margin` définit l'espace extérieur autour d'un élément.
+
+```css
+.element {
+    margin: 10px; /* Marge de 10px sur tous les côtés */
+    margin: 10px 20px; /* 10px en haut et bas, 20px à gauche et à droite */
+    margin: 10px 15px 20px 25px; /* Haut, Droite, Bas, Gauche */
+}
+```
+
+### 1.2 `padding`
+La propriété `padding` définit l'espace intérieur d'un élément, entre son contenu et sa bordure.
+
+```css
+.element {
+    padding: 10px; /* Padding uniforme */
+    padding: 10px 20px; /* 10px en haut/bas, 20px gauche/droite */
+}
+```
+
+### 1.3 `border`
+La propriété `border` définit une bordure autour d'un élément.
+
+```css
+.element {
+    border: 2px solid black;
+    border-radius: 5px; /* Coins arrondis */
+}
+```
+
+## 2. Dimensions et Redimensionnement
+
+### 2.1 Largeur et Hauteur
+Les propriétés `width` et `height` définissent la taille d’un élément.
+
+```css
+.element {
+    width: 100px;
+    height: 50px;
+    max-width: 500px;
+    min-width: 100px;
+}
+```
+
+### 2.2 Box-sizing
+Définit la manière dont la taille totale est calculée.
+
+```css
+.element {
+    box-sizing: border-box; /* Inclut padding et border dans la taille totale */
+}
+```
+
+## 3. Unités de Mesure en CSS
+
+### 3.1 Unités Absolues
+- `px` (pixels) : unité fixe.
+- `cm`, `mm`, `in`, `pt`, `pc` : rarement utilisées en web.
+
+### 3.2 Unités Relatives
+- `%` : proportionnelle à l’élément parent.
+- `em` : proportionnelle à la taille de la police du parent.
+- `rem` : proportionnelle à la taille de la police racine.
+- `vw` / `vh` : pourcentage de la largeur / hauteur de la fenêtre.
+- `vmin` / `vmax` : plus petit ou plus grand des deux (`vw` ou `vh`).
+
+## 4. Flexbox
+
+### 4.1 Introduction
+Flexbox est un modèle de disposition en CSS conçu pour organiser et aligner les éléments d'une page de manière efficace, notamment lorsqu'il s'agit de mise en page responsive.
+
+### 4.2 Conteneur Flex
+Un élément devient un conteneur Flex lorsque l'on applique `display: flex` ou `display: inline-flex`.
+
+```css
+.container {
+    display: flex; /* Ou inline-flex */
+}
+```
+
+### 4.3 Les éléments flexibles (Flex Items)
+Les enfants directs d'un conteneur flex deviennent des éléments flexibles.
+
+### 4.4 Propriétés du conteneur Flex
+
+#### `flex-direction`
+Définit la direction principale des éléments.
+
+```css
+.container {
+    flex-direction: row; /* Par défaut */
+    flex-direction: column;
+}
+```
+
+#### `justify-content`
+Gère l'alignement des éléments sur l'axe principal.
+
+```css
+.container {
+    justify-content: center;
+    justify-content: space-between;
+}
+```
+
+#### `align-items`
+Gère l'alignement des éléments sur l'axe secondaire.
+
+```css
+.container {
+    align-items: center;
+    align-items: flex-end;
+}
+```
+
+#### `flex-wrap`
+Permet de gérer le retour à la ligne des éléments si nécessaire.
+
+```css
+.container {
+    flex-wrap: wrap;
+}
+```
+
+### 4.5 Propriétés des éléments flexibles
+
+#### `flex`
+Shorthand pour `flex-grow`, `flex-shrink` et `flex-basis`.
+
+```css
+.item {
+    flex: 1 1 200px;
+}
+```
+
+#### `align-self`
+Permet d'aligner un élément différemment des autres.
+
+```css
+.item {
+    align-self: center;
+}
+```
+
+---
 
 ## 5. HTML Forms
 Les formulaires HTML permettent de collecter des données de l'utilisateur.
@@ -146,4 +294,166 @@ Exemple :
   <input type="text" id="username" name="username" required autofocus>
 </form>
 ```
+# &#x20;Responsive Design et les Media Queries
+
+## Introduction
+
+Le **Responsive Design** est une approche du design web qui permet à une page web de s'adapter automatiquement à la taille de l'écran de l'utilisateur. Il garantit une expérience utilisateur optimale sur tous les appareils (ordinateurs, tablettes, smartphones, etc.).
+
+Les **Media Queries** sont une fonctionnalité de CSS qui permet d'appliquer des styles différents en fonction de la taille de l'écran, de l'orientation ou d'autres caractéristiques du dispositif.
+
+---
+
+## 1. Les Fondements du Responsive Design
+
+### 1.1. Les Principes du Responsive Design
+
+Le responsive design repose sur trois principes fondamentaux :
+
+1. **Les grilles flexibles** : Utilisation de **grilles fluides** pour adapter les mises en page aux différents écrans.
+2. **Les images flexibles** : Les images doivent être redimensionnées dynamiquement pour ne pas déborder.
+3. **Les Media Queries** : Utilisation de CSS pour adapter l'affichage en fonction de la taille de l'écran.
+
+### 1.2. Exemple de Grille Flexible avec Flexbox
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.item {
+    flex: 1 1 300px; /* Minimum 300px, s'adapte au reste */
+    margin: 10px;
+    padding: 20px;
+    background-color: lightblue;
+    text-align: center;
+}
+```
+
+```html
+<div class="container">
+    <div class="item">Bloc 1</div>
+    <div class="item">Bloc 2</div>
+    <div class="item">Bloc 3</div>
+</div>
+```
+
+---
+
+## 2. Les Media Queries
+
+### 2.1. Syntaxe de Base
+
+```css
+@media (condition) {
+    /* Règles CSS à appliquer */
+}
+```
+
+### 2.2. Exemple de Media Query
+
+```css
+body {
+    background-color: white;
+}
+
+@media (max-width: 768px) {
+    body {
+        background-color: lightgray;
+    }
+}
+```
+
+Dans cet exemple, le fond de la page passe de blanc à gris clair lorsque la largeur de l'écran est inférieure à **768px**.
+
+### 2.3. Media Queries pour Différents Appareils
+
+```css
+/* Pour les écrans larges (ordinateurs) */
+@media (min-width: 1024px) {
+    body {
+        font-size: 18px;
+    }
+}
+
+/* Pour les tablettes */
+@media (max-width: 1023px) and (min-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+}
+
+/* Pour les smartphones */
+@media (max-width: 767px) {
+    body {
+        font-size: 14px;
+    }
+}
+```
+
+---
+
+## 3. Techniques Avancées de Responsive Design
+
+### 3.1. Utilisation de CSS Grid pour un Layout Flexible
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.item {
+    background-color: lightcoral;
+    padding: 20px;
+    text-align: center;
+}
+```
+
+### 3.2. Images et Vidéos Responsives
+
+```css
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+video {
+    max-width: 100%;
+    height: auto;
+}
+```
+
+### 3.3. Menu de Navigation Responsive
+
+```css
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: black;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+    }
+    .navbar a {
+        text-align: center;
+        padding: 15px;
+    }
+}
+```
+
+
+
 
