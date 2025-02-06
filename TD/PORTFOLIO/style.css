@@ -12,13 +12,6 @@ body {
     color: #e5e5e5;
 }
 
-.wrapper {
-    width: 1280px;
-    max-width: 95%;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
 header {
     display: flex;
     justify-content: space-between;
@@ -26,68 +19,29 @@ header {
     padding: 20px 0;
 }
 
-.logo {
+#logo {
     display: flex;
     align-items: center;
-}
-
-.logo i {
-    height: 45px;
-    width: 45px;
-    background-color: #007ced;
-    border-radius: 50%;
-    color: #fff;
-    font-size: 1.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 10px;
 }
 
 .logo-text {
-    font-size: 24px;
-    font-weight: 500;
+    font-size: 2rem;   
 }
-
-.nav-toggle {
-    display: none;
-}
-
-.nav-toggle-label {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-    width: 35px;
-}
-
-.nav-toggle-label span {
-    display: block;
-    background-color: #007ced;
-    height: 3px;
-    width: 100%;
-    margin: 5px 0;
-}
-
 nav {
     display: flex;
     align-items: center;
 }
 
-.nav-links {
+li {
     list-style: none;
-    display: flex;
 }
 
-.nav-links li {
-    margin-right: 2rem;
-}
-
-.nav-links a {
+a {
     color: #e5e5e5;
 }
 
 /* Section principale */
-.hero-header {
+.hero-section {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -96,13 +50,7 @@ nav {
     flex-direction: column;
 }
 
-.container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-    padding-top: 4rem;
-}
+
 
 .hero-pic {
     width: 300px;
@@ -132,11 +80,11 @@ nav {
     text-align: center;
 }
 
-.hero-text h5 {
+h1 {
     font-size: 14px;
 }
 
-.hero-text h1 {
+h2 {
     color: #007ced;
     font-size: 3rem;
 }
@@ -172,41 +120,8 @@ nav {
 }
 
 /* Responsive */
-@media (max-width: 930px) {
-    .nav-toggle-label {
-        display: flex;
-    }
 
-    .nav-links {
-        position: absolute;
-        top: 70px;
-        right: -100%;
-        background: #222;
-        width: 60%;
-        height: 100vh;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        transition: right 0.5s;
-        display: flex;
-    }
-
-    .nav-links li {
-        margin: 15px 0;
-    }
-
-    .nav-toggle:checked + .nav-links {
-        right: 0;
-    }
-}
 
 @media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .hero-text {
-        padding: 40px 0;
-    }
+ 
 }
