@@ -20,12 +20,9 @@ body {
 
 header {
     position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
+    width: 100%;    
     background: rgba(34, 34, 34, 0.95);
-    backdrop-filter: blur(10px);
-    z-index: 1000;
+    
 }
 
 nav {
@@ -44,13 +41,13 @@ nav {
 }
 
 .logo-text {
-    font-size: 1.8rem;
+    font-size: 1.8vw;
     font-weight: bold;
     color: #007ced;
 }
 
 #logo i {
-    font-size: 1.5rem;
+    font-size: 1.5vw;
     color: #007ced;
     transition: transform 0.3s ease;
     list-style: none;
@@ -74,7 +71,7 @@ nav ul li a {
     transition: all 0.3s ease;
     position: relative;
 }
-
+/*Underline effect*/
 nav ul li a::after {
     content: '';
     position: absolute;
@@ -86,11 +83,11 @@ nav ul li a::after {
     background: #007ced;
     transition: width 0.3s ease;
 }
-
+/*Underline effect*/
 nav ul li a:hover::after {
     width: 70%;
 }
-
+/*Underline effect*/
 nav ul li a:hover {
     color: #007ced;
 }
@@ -107,8 +104,6 @@ nav ul li{
     min-height: 95vh;
     flex-direction: column;
 }
-
-
 
 .hero-pic {
     width: 300px;
@@ -187,7 +182,9 @@ footer{
         padding: 1rem 20px;
         display: flex;
         flex-direction: column;
+        font-size: 2.5vw;
     }
+
 
     nav ul {
         gap: 1rem;
@@ -197,7 +194,7 @@ footer{
     li{
         list-style: none;
     }
-
-   
+    .logo-text{
+        font-size: 4vw;
+    }
 }
-
