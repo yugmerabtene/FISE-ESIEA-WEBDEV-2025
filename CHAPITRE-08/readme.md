@@ -454,6 +454,183 @@ video {
 }
 ```
 
+# **Pseudo elements `::after` et `::before` en CSS**  
+
+Les pseudo-éléments `::after` et `::before` permettent d'ajouter du contenu **avant ou après** un élément HTML **sans modifier le code HTML**. Ils sont souvent utilisés pour ajouter des icônes, des effets décoratifs, ou du contenu dynamique.
+
+---
+
+## **1. Différence entre `::before` et `::after`**
+| Pseudo-élément | Explication |
+|---------------|------------|
+| `::before` | Ajoute du contenu **avant** l’élément ciblé. |
+| `::after` | Ajoute du contenu **après** l’élément ciblé. |
+
+📌 **Règle importante :**  
+Les pseudo-éléments `::before` et `::after` nécessitent **obligatoirement** la propriété `content` pour fonctionner.
+
+---
+
+## **2. Syntaxe Générale**
+```css
+élément::before {
+    content: "Texte avant";
+}
+
+élément::after {
+    content: "Texte après";
+}
+```
+📌 **Explication :**
+- `élément` : L’élément HTML ciblé (ex : `p`, `a`, `div`, etc.).
+- `content` : Définit ce qui est ajouté avant ou après l’élément.
+
+---
+
+## **3. Exemples Pratiques**
+### **3.1 Ajouter une décoration avant et après un élément**
+```html
+<p>Bienvenue sur mon site</p>
+```
+```css
+p::before {
+    content: "🔥 ";
+}
+
+p::after {
+    content: " 🎉";
+}
+```
+📌 **Résultat :**  
+🔥 Bienvenue sur mon site 🎉
+
+---
+
+### **3.2 Ajouter une icône après un lien (`a::after`)**
+```html
+<a href="https://www.google.com" target="_blank">Google</a>
+```
+```css
+a[target="_blank"]::after {
+    content: " 🔗";
+    font-size: 12px;
+    color: gray;
+}
+```
+📌 **Résultat :**  
+Le lien **Google** aura une icône `🔗` indiquant qu’il s’ouvre dans un nouvel onglet.
+
+---
+
+### **3.3 Ajouter un effet de soulignement dynamique sous un lien**
+```css
+a::after {
+    content: "";
+    display: block;
+    width: 0%;
+    height: 2px;
+    background-color: blue;
+    transition: width 0.3s ease-in-out;
+}
+
+a:hover::after {
+    width: 100%;
+}
+```
+📌 **Explication :**
+- Un **trait bleu sous le lien** apparaît uniquement **au survol** (`hover`).
+- Il commence à **0%** et s’étend sur **100%** avec une **animation fluide**.
+
+---
+
+### **3.4 Ajouter des guillemets autour d’un texte**
+```css
+blockquote::before {
+    content: "« ";
+    font-size: 20px;
+    color: gray;
+}
+
+blockquote::after {
+    content: " »";
+    font-size: 20px;
+    color: gray;
+}
+```
+📌 **Résultat :**  
+**« Mon texte dans une citation »**  
+Les guillemets sont ajoutés automatiquement.
+
+---
+
+### **3.5 Afficher l’URL d’un lien après `<a>`**
+```css
+a::after {
+    content: " (" attr(href) ")";
+    font-size: 12px;
+    color: gray;
+}
+```
+📌 **Explication :**  
+- `attr(href)` affiche l’attribut `href` de `<a>`.  
+- Très utile pour indiquer une URL sur des documents imprimés.
+
+---
+
+## **4. `::before` et `::after` avec des images (via `background`)**
+Les pseudo-éléments **ne peuvent pas contenir d’images directement** via `content`. Mais on peut utiliser `background-image`.
+
+```css
+button::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url('icone.png');
+    background-size: cover;
+    margin-right: 5px;
+}
+```
+📌 **Explication :**  
+- Un **icône est ajouté avant le bouton** en utilisant une image.
+
+---
+
+## **5. Utilisation Avancée : Création d’un Badge**
+### **5.1 Ajout d’un badge "Nouveau" sur un produit**
+```html
+<div class="produit">Produit X</div>
+```
+```css
+.produit {
+    position: relative;
+    display: inline-block;
+    padding: 10px;
+}
+
+.produit::after {
+    content: "Nouveau";
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    padding: 5px;
+    border-radius: 5px;
+}
+```
+📌 **Résultat :**  
+Un **badge rouge "Nouveau"** est ajouté en haut à droite du produit.
+
+---
+
+## **6. Résumé et Bonnes Pratiques**
+✅ **Utiliser `::before` et `::after` pour ajouter du contenu décoratif.**  
+✅ **Toujours inclure `content: ""` même si aucun texte n’est ajouté.**  
+✅ **Ne pas utiliser ces pseudo-éléments pour du contenu essentiel** (ils sont ignorés par certains lecteurs d'écran).  
+✅ **Utiliser `position: absolute;` pour placer des éléments supplémentaires comme des badges.**  
+
 
 
 ## Documentation (L'un des meilleurs développeur frontend spécialisé en CSS):  
