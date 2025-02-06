@@ -12,32 +12,90 @@ body {
     color: #e5e5e5;
 }
 
+body {
+    
+    background: #222;
+    color: #e5e5e5;
+}
+
 header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(34, 34, 34, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+}
+
+nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 0;
+    padding: 1rem 5%;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 #logo {
     display: flex;
     align-items: center;
+    gap: 10px;
 }
 
 .logo-text {
-    font-size: 2rem;   
-}
-nav {
-    display: flex;
-    align-items: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #007ced;
 }
 
-li {
+#logo i {
+    font-size: 1.5rem;
+    color: #007ced;
+    transition: transform 0.3s ease;
     list-style: none;
 }
 
-a {
+#logo:hover i {
+    transform: scale(1.2);
+}
+
+nav ul {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+nav ul li a {
     color: #e5e5e5;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: #007ced;
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover::after {
+    width: 70%;
+}
+
+nav ul li a:hover {
+    color: #007ced;
+}
+nav ul li{
+    list-style: none;
 }
 
 /* Section principale */
@@ -46,7 +104,7 @@ a {
     justify-content: center;
     align-items: center;
     text-align: center;
-    min-height: 100vh;
+    min-height: 95vh;
     flex-direction: column;
 }
 
@@ -116,12 +174,30 @@ h2 {
 
 .social a:hover {
     color: #007ced;
-    transform: rotate(360deg);
+    
+}
+footer{
+    display: flex;
+    justify-content: center;
 }
 
 /* Responsive */
-
-
 @media (max-width: 768px) {
- 
+    nav {
+        padding: 1rem 20px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    nav ul {
+        gap: 1rem;
+        display: flex;
+        flex-direction: column;
+    }
+    li{
+        list-style: none;
+    }
+
+   
 }
+
