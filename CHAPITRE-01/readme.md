@@ -151,16 +151,3 @@ test('addition de 2 + 2', () => {
   expect(2 + 2).toBe(4);
 });
 ```
-
----
-
-### **Conclusion**
-Le **versioning** et le **CI/CD** sont des piliers du développement moderne :
-- Git permet de **suivre et gérer les versions du code**.
-- Les **pipelines CI/CD** assurent un **développement rapide et fiable**.
-- Des outils comme **GitHub Actions, Jenkins et GitLab CI/CD** simplifient l'automatisation.
-
-📢 **Prochaines étapes :**
-- Configurer **Git** et pratiquer les commandes.
-- Créer un **pipeline CI/CD** simple avec **GitHub Actions**.
-- Expérimenter avec **Docker** et **Kubernetes** pour le déploiement.
