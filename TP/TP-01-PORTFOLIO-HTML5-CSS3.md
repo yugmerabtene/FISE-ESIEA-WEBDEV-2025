@@ -16,7 +16,8 @@
 - **Présentation claire de la structure des pages** (1 pt)  
 - **Respect des principes d’ergonomie** (1 pt)  
 
-### **5. Maquettage (2 points)**  
+### **5. Maquettage (2 
+points)**  
 - **Maquette fidèle au wireframe** (1 pt)  
 - **Utilisation d'un outil adapté (Figma, Adobe XD, etc.)** (1 pt)  
 
