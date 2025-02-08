@@ -149,5 +149,5 @@ L’automatisation est un élément clé du DevOps. Voici les principales approc
 ```javascript
 test('addition de 2 + 2', () => {
   expect(2 + 2).toBe(4);
-});
+}); 
 ```
