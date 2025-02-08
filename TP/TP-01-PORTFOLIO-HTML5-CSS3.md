@@ -23,9 +23,9 @@ points)**
 
 ### **6. Code et bonnes pratiques (4 points)**  
 - **Versionnement avec Git (commit régulier et clair)** (1 pt)  
-- **Respect des bonnes pratiques de développement (HTML/CSS bien structuré, code lisible et organisé)** (1 pt)  
-- **Une page d'accueil bien construite** (1 pt)  
-- **Pages portfolio et contact fonctionnelles** (1 pt)  
+- **Respect des bonnes pratiques de développement (HTML5 sétmantique/CSS3 bien structuré, code lisible et organisé)** (1 pt)  
+- **Une page d'accueil bien construite qui vous presente "BIO"** (1 pt)  
+- **Pages portfolio avec vos travaux ou travaux fictifs et contact fonctionnelles** (1 pt)  
 
 ### **7. Formulaire de contact fonctionnel (3 points)**  
 - **Formulaire complet (nom, email, message, etc.)** (1 pt)  
