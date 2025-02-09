@@ -5,6 +5,7 @@
 ##### **Qu'est-ce que Bootstrap ?**
 Bootstrap est un framework CSS open-source qui permet de créer des sites web responsives, modernes et interactifs de manière rapide. Il offre un ensemble de styles CSS et de composants JavaScript prédéfinis pour simplifier le développement d'interfaces utilisateurs.
 
+**Documentation officielle :** https://getbootstrap.com/docs/5.3/getting-started/introduction/
 ##### **Avantages de Bootstrap :**
 - **Mobile-first :** Par défaut, Bootstrap est conçu pour fonctionner sur les écrans mobiles et s'adapte automatiquement aux tailles d'écran plus grandes.
 - **Gain de temps :** Il permet de créer des sites rapidement grâce à ses classes CSS et composants prêts à l'emploi.
