@@ -32,19 +32,21 @@ Bootstrap utilise un système de grille de 12 colonnes. Cela signifie que pour c
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-4">Colonne 1</div>
-            <div class="col-4">Colonne 2</div>
-            <div class="col-4">Colonne 3</div>
-        </div>
-    </div>
+    <main class="container">
+        <section class="row">
+            <article class="col-4">Colonne 1</article>
+            <article class="col-4">Colonne 2</article>
+            <article class="col-4">Colonne 3</article>
+        </section>
+    </main>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </html>
 ```
 
+
 **Explication :**
-- **`container` :** Conteneur principal qui centre le contenu.
+- **s`container` :** Conteneur principal qui centre le contenu.
 - **`row` :** Ligne qui contient des colonnes.
 - **`col-4` :** Chaque colonne prend 4 sur 12 parts de la ligne (donc 3 colonnes au total).
 
@@ -91,38 +93,174 @@ Bootstrap inclut également Flexbox, une technologie CSS qui permet un alignemen
 
 #### **3. Composants prédéfinis (navbar, cards, modals, etc.)**
 
-##### **Navbar (Barre de navigation)**
-La **navbar** est un composant qui permet de créer une barre de navigation.
 
-**Exemple d'une navbar simple :**
+---
+
+# 📌 Créer une Barre de Navigation Responsive avec Bootstrap 5
+
+Une **barre de navigation** est un élément essentiel de toute interface web. Dans ce guide, nous allons créer une navbar responsive avec **Bootstrap 5**, qui s’adapte automatiquement aux différentes tailles d’écran.
+
+---
+
+## 🔹 Étape 1 : Inclure Bootstrap 5
+
+Avant de commencer, assure-toi d'inclure **Bootstrap 5** dans ton projet. Ajoute les liens suivants dans la section `<head>` de ton fichier HTML :
+
+```html
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap JS (nécessaire pour le menu burger) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+```
+
+---
+
+## 🔹 Étape 2 : Créer la structure de la barre de navigation `<nav>`
+
+Voici la structure de base d’une **navbar Bootstrap** :
 
 ```html
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+</nav>
+```
+
+### 🔍 Explication :
+- **`navbar`** → Classe de base de Bootstrap pour une barre de navigation.
+- **`navbar-expand-lg`** → La barre sera repliée (menu burger) sur les petits écrans et affichée en mode étendu à partir de la taille *large* (`lg`).
+- **`navbar-light bg-light`** → Définit un fond clair et un texte sombre pour un bon contraste visuel.
+
+---
+
+## 🔹 Étape 3 : Ajouter le logo ou le titre du site
+
+À l’intérieur de `<nav>`, on ajoute le **nom du site ou un logo** avec la classe `navbar-brand` :
+
+```html
+<a class="navbar-brand" href="#">Mon Site</a>
+```
+
+### 🔍 Explication :
+- **`navbar-brand`** → Utilisé pour afficher un logo ou le nom du site.
+- Il peut contenir un texte ou une **image (`<img>`)** si on veut un logo.
+
+Exemple avec un logo :
+```html
+<a class="navbar-brand" href="#">
+    <img src="logo.png" alt="Logo" width="40" height="40">
+</a>
+```
+
+---
+
+## 🔹 Étape 4 : Ajouter le bouton pour le menu mobile
+
+Sur mobile, le menu se replie et devient un **menu burger**. On ajoute donc un bouton pour l’ouvrir :
+
+```html
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <span class="navbar-toggler-icon"></span>
+</button>
+```
+
+### 🔍 Explication :
+- **`navbar-toggler`** → Identifie ce bouton comme celui du menu.
+- **`data-bs-toggle="collapse"`** → Active/désactive l’affichage du menu.
+- **`data-bs-target="#navbarNav"`** → Associe le bouton au menu avec l’ID `navbarNav`.
+- **`navbar-toggler-icon`** → Affiche l’icône du menu burger.
+
+---
+
+## 🔹 Étape 5 : Ajouter les liens du menu
+
+On ajoute les liens de navigation dans un `<div>` contenant une liste `<ul>`.
+
+```html
+<div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+        <li class="nav-item active">
+            <a class="nav-link" href="#">Accueil <span class="visually-hidden">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Fonctionnalités</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Tarifs</a>
+        </li>
+    </ul>
+</div>
+```
+
+### 🔍 Explication :
+- **`collapse navbar-collapse`** → Permet au menu de se replier en version mobile.
+- **`navbar-nav`** → Spécifie une liste de liens de navigation.
+- **`nav-item`** → Définit chaque élément du menu.
+- **`nav-link`** → Applique un style standard aux liens.
+- **`active`** → Indique la page actuelle (ici "Accueil").
+- **`visually-hidden`** → Améliore l’accessibilité pour les lecteurs d’écran.
+
+---
+
+## 🔹 Étape 6 : Tester la navigation
+
+En copiant ce code dans un fichier **HTML** et en l’ouvrant dans un navigateur, tu devrais voir une barre de navigation **responsive**, s’adaptant automatiquement aux écrans **mobiles et desktop**.
+
+---
+
+## ✅ Code Final Complet
+
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Bootstrap</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Mon Site</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#">Accueil <span class="visually-hidden">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Fonctionnalités</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Prix</a>
+                <a class="nav-link" href="#">Tarifs</a>
             </li>
         </ul>
     </div>
 </nav>
+
+</body>
+</html>
 ```
 
-**Explication :**
-- **`navbar-expand-lg` :** Cette classe permet de rendre la barre de navigation responsive. Elle se rétracte sur les écrans petits.
-- **`navbar-light` :** Définit un thème clair pour la barre de navigation.
-- **`navbar-toggler` :** Crée un bouton pour afficher le menu sur les petits écrans.
+---
 
+## 🚀 Résumé des étapes :
+
+1️⃣ **Inclure Bootstrap (CSS + JS)**  
+2️⃣ **Créer une `<nav>` avec les classes Bootstrap**  
+3️⃣ **Ajouter le logo ou le nom du site (`navbar-brand`)**  
+4️⃣ **Ajouter un bouton pour le menu mobile (`navbar-toggler`)**  
+5️⃣ **Créer les liens de navigation dans une liste `<ul>`**  
+6️⃣ **Tester l'affichage sur différentes tailles d'écran**
+
+---
 ##### **Cards**
 Les **cards** sont des éléments qui contiennent du contenu dans un format de "boîte".
 

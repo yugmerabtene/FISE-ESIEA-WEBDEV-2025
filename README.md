@@ -114,7 +114,8 @@
 - Syntaxe de base de PHP  
 - Variables, boucles, conditions et fonctions  
 - Interaction avec les formulaires HTML  
-- Connexion à une base de données MySQL  
+- Connexion à une base de données MySQL 
+- Sécurité des applications contre les injections SQL/XSS/CSRF TOKEN
 
 ---
 
