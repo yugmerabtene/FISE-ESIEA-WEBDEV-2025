@@ -276,49 +276,129 @@ GROUP BY etudiants.id;
 ```
 
 ---
+Voici le schéma régénéré et expliqué en détail pour correspondre à la structure de la base de données générée précédemment. J'ai également ajouté des précisions sur les relations et les cardinalités.
+
+---
+
+## Schéma de la Base de Données
+
 ```plaintext
 +-----------------+          +-----------------+          +-----------------+
 |   etudiants     |          |   inscriptions  |          |      cours      |
 +-----------------+          +-----------------+          +-----------------+
 | id (PK)         |<---1---->| etudiant_id (FK) |          | id (PK)         |
 | nom             |          | cours_id (FK)    |<---N---->| titre           |
-| prenom          |          +-----------------+          | description     |
-| age             |                                       +-----------------+
+| prenom          |          | date_inscription |          | description     |
+| age             |          +-----------------+          +-----------------+
 | email           |
+| adresse         |
+| telephone       |
 +-----------------+
 ```
 
-### Explication des cardinalités
+---
 
-1. **`etudiants` → `inscriptions`** :
-   - **1:N** (Un étudiant peut s'inscrire à plusieurs cours).
-   - La flèche `1` pointe vers `etudiants`, et la flèche `N` pointe vers `inscriptions`.
+## Explication Détaillée du Schéma
 
-2. **`cours` → `inscriptions`** :
-   - **1:N** (Un cours peut avoir plusieurs étudiants inscrits).
-   - La flèche `1` pointe vers `cours`, et la flèche `N` pointe vers `inscriptions`.
+### **1. Tables et leurs Colonnes**
 
-### Détails des tables
+#### **Table `etudiants`**
+- **`id` (PK)** : Clé primaire (Primary Key) qui identifie de manière unique chaque étudiant.
+- **`nom`** : Nom de l'étudiant.
+- **`prenom`** : Prénom de l'étudiant.
+- **`age`** : Âge de l'étudiant, avec une contrainte `CHECK` pour s'assurer que l'âge est supérieur ou égal à 18.
+- **`email`** : Adresse e-mail de l'étudiant, avec une contrainte `UNIQUE` pour garantir qu'aucun étudiant n'a la même adresse e-mail.
+- **`adresse`** : Adresse physique de l'étudiant.
+- **`telephone`** : Numéro de téléphone de l'étudiant.
 
-- **Table `etudiants`** :
-  - `id` : Clé primaire (PK).
-  - `nom`, `prenom` : Informations de l'étudiant.
-  - `age` : Âge de l'étudiant (doit être ≥ 18).
-  - `email` : Adresse e-mail unique.
+#### **Table `cours`**
+- **`id` (PK)** : Clé primaire qui identifie de manière unique chaque cours.
+- **`titre`** : Titre du cours.
+- **`description`** : Description détaillée du cours.
 
-- **Table `cours`** :
-  - `id` : Clé primaire (PK).
-  - `titre` : Titre du cours.
-  - `description` : Description du cours.
+#### **Table `inscriptions`**
+- **`id` (PK)** : Clé primaire qui identifie de manière unique chaque inscription.
+- **`etudiant_id` (FK)** : Clé étrangère (Foreign Key) qui référence l'`id` de la table `etudiants`. Elle lie un étudiant à une inscription.
+- **`cours_id` (FK)** : Clé étrangère qui référence l'`id` de la table `cours`. Elle lie un cours à une inscription.
+- **`date_inscription`** : Date à laquelle l'étudiant s'est inscrit au cours. Par défaut, elle prend la date du jour (`CURRENT_DATE`).
 
-- **Table `inscriptions`** :
-  - `id` : Clé primaire (PK).
-  - `etudiant_id` : Clé étrangère (FK) référençant `etudiants(id)`.
-  - `cours_id` : Clé étrangère (FK) référençant `cours(id)`.
+---
 
-### Relations
+### **2. Relations et Cardinalités**
 
-- La table `inscriptions` sert de table de liaison entre `etudiants` et `cours`.
-- Les cardinalités montrent que :
-  - Un étudiant peut s'inscrire à plusieurs cours.
-  - Un cours peut avoir plusieurs étudiants inscrits.
+#### **Relation entre `etudiants` et `inscriptions`**
+- **Cardinalité : 1:N** (Un à plusieurs)
+  - **`1` côté `etudiants`** : Un étudiant peut s'inscrire à **plusieurs cours**.
+  - **`N` côté `inscriptions`** : Plusieurs inscriptions peuvent être associées à un seul étudiant.
+  - **Explication** : Un étudiant peut s'inscrire à plusieurs cours, mais chaque inscription est liée à un seul étudiant.
+
+#### **Relation entre `cours` et `inscriptions`**
+- **Cardinalité : 1:N** (Un à plusieurs)
+  - **`1` côté `cours`** : Un cours peut avoir **plusieurs étudiants** inscrits.
+  - **`N` côté `inscriptions`** : Plusieurs inscriptions peuvent être associées à un seul cours.
+  - **Explication** : Un cours peut être suivi par plusieurs étudiants, mais chaque inscription est liée à un seul cours.
+
+---
+
+### **3. Rôle de la Table `inscriptions`**
+- La table `inscriptions` sert de **table de liaison** (ou table d'association) entre les tables `etudiants` et `cours`.
+- Elle permet de gérer une relation **many-to-many** (plusieurs-à-plusieurs) entre les étudiants et les cours.
+- Chaque enregistrement dans cette table représente une inscription d'un étudiant à un cours.
+
+---
+
+### **4. Contraintes et Intégrité des Données**
+- **Clés primaires (PK)** : Garantissent que chaque enregistrement dans une table est unique.
+- **Clés étrangères (FK)** : Assurent l'intégrité référentielle entre les tables. Par exemple :
+  - Un `etudiant_id` dans `inscriptions` doit correspondre à un `id` existant dans `etudiants`.
+  - Un `cours_id` dans `inscriptions` doit correspondre à un `id` existant dans `cours`.
+- **Contraintes supplémentaires** :
+  - `UNIQUE` sur `email` dans `etudiants` : Empêche deux étudiants d'avoir la même adresse e-mail.
+  - `CHECK` sur `age` dans `etudiants` : Garantit que l'âge est supérieur ou égal à 18.
+
+---
+
+### **5. Exemple de Données**
+
+#### Table `etudiants`
+| id  | nom     | prenom | age | email                   | adresse               | telephone   |
+|-----|---------|--------|-----|-------------------------|-----------------------|-------------|
+| 1   | Dupont  | Jean   | 22  | jean.dupont@email.com   | 123 Rue de Paris      | 0123456789  |
+| 2   | Martin  | Alice  | 20  | alice.martin@email.com  | 456 Avenue des Champs | 0987654321  |
+
+#### Table `cours`
+| id  | titre                  | description                                      |
+|-----|------------------------|--------------------------------------------------|
+| 1   | Base de données        | Introduction aux bases de données relationnelles.|
+| 2   | Programmation Python   | Apprendre les bases de la programmation en Python.|
+
+#### Table `inscriptions`
+| id  | etudiant_id | cours_id | date_inscription |
+|-----|-------------|----------|-------------------|
+| 1   | 1           | 1        | 2023-10-01        |
+| 2   | 1           | 2        | 2023-10-02        |
+| 3   | 2           | 1        | 2023-10-03        |
+
+---
+
+### **6. Requêtes pour Illustrer les Relations**
+
+#### Liste des étudiants inscrits à un cours spécifique
+```sql
+SELECT etudiants.nom, etudiants.prenom, cours.titre
+FROM etudiants
+INNER JOIN inscriptions ON etudiants.id = inscriptions.etudiant_id
+INNER JOIN cours ON inscriptions.cours_id = cours.id
+WHERE cours.titre = 'Base de données';
+```
+
+#### Liste des cours suivis par un étudiant spécifique
+```sql
+SELECT cours.titre, cours.description
+FROM cours
+INNER JOIN inscriptions ON cours.id = inscriptions.cours_id
+INNER JOIN etudiants ON inscriptions.etudiant_id = etudiants.id
+WHERE etudiants.nom = 'Dupont' AND etudiants.prenom = 'Jean';
+```
+
+---
