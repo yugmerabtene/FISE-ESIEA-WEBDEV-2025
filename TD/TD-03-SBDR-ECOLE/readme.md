@@ -1,37 +1,3 @@
-# Travaux Dirigés : Base de Données d'une École Informatique
-
-## 1. Data Definition Language (DDL) - Langage de Définition de Données
-Utilisé pour créer et modifier la structure des bases de données.
-
-### a) Création de la base de données et des tables
-```sql
-CREATE DATABASE gestion_ecole;
-USE gestion_ecole;
-
-CREATE TABLE etudiants (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nom VARCHAR(50) NOT NULL,
-    prenom VARCHAR(50) NOT NULL,
-    age INT CHECK (age >= 18),
-    email VARCHAR(100) UNIQUE
-);
-
-CREATE TABLE cours (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    titre VARCHAR(100) NOT NULL,
-    description TEXT
-);
-
-CREATE TABLE inscriptions (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    etudiant_id INT,
-    cours_id INT,
-    FOREIGN KEY (etudiant_id) REFERENCES etudiants(id),
-    FOREIGN KEY (cours_id) REFERENCES cours(id)
-);
-```
-----
-Voici une représentation ASCII du schéma de base de données avec les cardinalités. Cela vous permettra de visualiser les tables et les relations entre elles directement dans un terminal ou un éditeur de texte.
 
 ```plaintext
 +-----------------+          +-----------------+          +-----------------+
@@ -83,9 +49,48 @@ Voici une représentation ASCII du schéma de base de données avec les cardinal
 
 ----
 
+Voici une version corrigée et complétée de votre TD sur la base de données d'une école informatique. J'ai ajouté plus de requêtes, un jeu de données plus étendu, et j'ai veillé à ce que les jointures fonctionnent correctement. J'ai également structuré le document pour qu'il soit plus clair et complet.
+
+---
+
+# Travaux Dirigés : Base de Données d'une École Informatique
+
+## 1. Data Definition Language (DDL) - Langage de Définition de Données
+Utilisé pour créer et modifier la structure des bases de données.
+
+### a) Création de la base de données et des tables
+```sql
+CREATE DATABASE gestion_ecole;
+USE gestion_ecole;
+
+CREATE TABLE etudiants (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(50) NOT NULL,
+    prenom VARCHAR(50) NOT NULL,
+    age INT CHECK (age >= 18),
+    email VARCHAR(100) UNIQUE,
+    adresse VARCHAR(255)
+);
+
+CREATE TABLE cours (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titre VARCHAR(100) NOT NULL,
+    description TEXT
+);
+
+CREATE TABLE inscriptions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    etudiant_id INT,
+    cours_id INT,
+    date_inscription DATE DEFAULT CURRENT_DATE,
+    FOREIGN KEY (etudiant_id) REFERENCES etudiants(id) ON DELETE CASCADE,
+    FOREIGN KEY (cours_id) REFERENCES cours(id) ON DELETE CASCADE
+);
+```
+
 ### b) Modification d'une table
 ```sql
-ALTER TABLE etudiants ADD COLUMN adresse VARCHAR(255);
+ALTER TABLE etudiants ADD COLUMN telephone VARCHAR(15);
 ```
 
 ### c) Suppression d'une table
@@ -105,9 +110,24 @@ Utilisé pour insérer, modifier et supprimer des données.
 
 ### a) Insertion de données
 ```sql
-INSERT INTO etudiants (nom, prenom, age, email) VALUES ('Dupont', 'Jean', 22, 'jean.dupont@email.com');
-INSERT INTO cours (titre, description) VALUES ('Base de données', 'Introduction aux bases de données relationnelles.');
-INSERT INTO inscriptions (etudiant_id, cours_id) VALUES (1, 1);
+-- Insertion des étudiants
+INSERT INTO etudiants (nom, prenom, age, email, adresse) VALUES 
+('Dupont', 'Jean', 22, 'jean.dupont@email.com', '123 Rue de Paris'),
+('Martin', 'Alice', 20, 'alice.martin@email.com', '456 Avenue des Champs'),
+('Bernard', 'Luc', 21, 'luc.bernard@email.com', '789 Boulevard de Lyon');
+
+-- Insertion des cours
+INSERT INTO cours (titre, description) VALUES 
+('Base de données', 'Introduction aux bases de données relationnelles.'),
+('Programmation Python', 'Apprendre les bases de la programmation en Python.'),
+('Réseaux informatiques', 'Comprendre les principes des réseaux informatiques.');
+
+-- Insertion des inscriptions
+INSERT INTO inscriptions (etudiant_id, cours_id, date_inscription) VALUES 
+(1, 1, '2023-10-01'),
+(1, 2, '2023-10-02'),
+(2, 1, '2023-10-03'),
+(3, 3, '2023-10-04');
 ```
 
 ### b) Modification de données existantes
@@ -117,7 +137,7 @@ UPDATE etudiants SET age = 23 WHERE id = 1;
 
 ### c) Suppression de données
 ```sql
-DELETE FROM etudiants WHERE id = 1;
+DELETE FROM etudiants WHERE id = 3;
 ```
 
 ---
@@ -135,6 +155,23 @@ SELECT * FROM etudiants;
 SELECT nom, prenom FROM etudiants WHERE age > 20;
 ```
 
+### c) Requêtes complexes avec jointures
+```sql
+-- Liste des étudiants inscrits à un cours spécifique
+SELECT etudiants.nom, etudiants.prenom, cours.titre
+FROM etudiants
+INNER JOIN inscriptions ON etudiants.id = inscriptions.etudiant_id
+INNER JOIN cours ON inscriptions.cours_id = cours.id
+WHERE cours.titre = 'Base de données';
+
+-- Liste des cours suivis par un étudiant spécifique
+SELECT cours.titre, cours.description
+FROM cours
+INNER JOIN inscriptions ON cours.id = inscriptions.cours_id
+INNER JOIN etudiants ON inscriptions.etudiant_id = etudiants.id
+WHERE etudiants.nom = 'Dupont' AND etudiants.prenom = 'Jean';
+```
+
 ---
 
 ## 4. Data Control Language (DCL) - Langage de Contrôle des Données
@@ -142,7 +179,7 @@ Utilisé pour accorder ou révoquer des permissions.
 
 ### a) Attribution des droits d'accès
 ```sql
-GRANT SELECT, INSERT ON gestion_ecole.* TO 'utilisateur'@'localhost';
+GRANT SELECT, INSERT, UPDATE ON gestion_ecole.* TO 'utilisateur'@'localhost';
 ```
 
 ### b) Retrait des droits d'accès
@@ -192,9 +229,18 @@ LEFT JOIN inscriptions ON etudiants.id = inscriptions.etudiant_id
 LEFT JOIN cours ON inscriptions.cours_id = cours.id;
 ```
 
+#### RIGHT JOIN : Renvoie tous les enregistrements de la table de droite et ceux correspondants de la table de gauche
+```sql
+SELECT etudiants.nom, cours.titre
+FROM etudiants
+RIGHT JOIN inscriptions ON etudiants.id = inscriptions.etudiant_id
+RIGHT JOIN cours ON inscriptions.cours_id = cours.id;
+```
+
 ### b) Indexation pour optimiser les requêtes
 ```sql
 CREATE INDEX idx_email ON etudiants(email);
+CREATE INDEX idx_titre ON cours(titre);
 ```
 
 ### c) Bonnes pratiques d'optimisation
@@ -214,4 +260,73 @@ CREATE INDEX idx_email ON etudiants(email);
 - Chaque inscription lie un `etudiant_id` à un `cours_id`.
 - Des clés étrangères assurent l'intégrité des données entre ces entités.
 
+---
 
+## 8. Exemples de Requêtes Avancées
+
+### a) Nombre d'étudiants inscrits par cours
+```sql
+SELECT cours.titre, COUNT(inscriptions.etudiant_id) AS nombre_etudiants
+FROM cours
+LEFT JOIN inscriptions ON cours.id = inscriptions.cours_id
+GROUP BY cours.titre;
+```
+
+### b) Moyenne d'âge des étudiants par cours
+```sql
+SELECT cours.titre, AVG(etudiants.age) AS moyenne_age
+FROM cours
+INNER JOIN inscriptions ON cours.id = inscriptions.cours_id
+INNER JOIN etudiants ON inscriptions.etudiant_id = etudiants.id
+GROUP BY cours.titre;
+```
+
+### c) Étudiants non inscrits à un cours
+```sql
+SELECT etudiants.nom, etudiants.prenom
+FROM etudiants
+LEFT JOIN inscriptions ON etudiants.id = inscriptions.etudiant_id
+WHERE inscriptions.cours_id IS NULL;
+```
+
+---
+
+## 9. Jeu de Données Étendu
+
+### a) Insertion de données supplémentaires
+```sql
+-- Ajout de nouveaux étudiants
+INSERT INTO etudiants (nom, prenom, age, email, adresse) VALUES 
+('Leroy', 'Sophie', 19, 'sophie.leroy@email.com', '101 Rue de Marseille'),
+('Moreau', 'Pierre', 22, 'pierre.moreau@email.com', '202 Avenue de Bordeaux');
+
+-- Ajout de nouveaux cours
+INSERT INTO cours (titre, description) VALUES 
+('Algorithmique', 'Apprendre les bases de l\'algorithmique.'),
+('Sécurité informatique', 'Introduction à la sécurité des systèmes informatiques.');
+
+-- Ajout de nouvelles inscriptions
+INSERT INTO inscriptions (etudiant_id, cours_id, date_inscription) VALUES 
+(4, 1, '2023-10-05'),
+(4, 3, '2023-10-06'),
+(5, 2, '2023-10-07'),
+(5, 4, '2023-10-08');
+```
+
+### b) Requêtes sur le jeu de données étendu
+```sql
+-- Liste des cours suivis par chaque étudiant
+SELECT etudiants.nom, etudiants.prenom, GROUP_CONCAT(cours.titre SEPARATOR ', ') AS cours_inscrits
+FROM etudiants
+LEFT JOIN inscriptions ON etudiants.id = inscriptions.etudiant_id
+LEFT JOIN cours ON inscriptions.cours_id = cours.id
+GROUP BY etudiants.id;
+
+-- Nombre total d'inscriptions par étudiant
+SELECT etudiants.nom, etudiants.prenom, COUNT(inscriptions.id) AS nombre_inscriptions
+FROM etudiants
+LEFT JOIN inscriptions ON etudiants.id = inscriptions.etudiant_id
+GROUP BY etudiants.id;
+```
+
+---
