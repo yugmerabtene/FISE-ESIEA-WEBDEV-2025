@@ -30,6 +30,58 @@ CREATE TABLE inscriptions (
     FOREIGN KEY (cours_id) REFERENCES cours(id)
 );
 ```
+----
+Voici une représentation ASCII du schéma de base de données avec les cardinalités. Cela vous permettra de visualiser les tables et les relations entre elles directement dans un terminal ou un éditeur de texte.
+
+```plaintext
++-----------------+          +-----------------+          +-----------------+
+|   etudiants     |          |   inscriptions  |          |      cours      |
++-----------------+          +-----------------+          +-----------------+
+| id (PK)         |<---1---->| etudiant_id (FK) |          | id (PK)         |
+| nom             |          | cours_id (FK)    |<---N---->| titre           |
+| prenom          |          +-----------------+          | description     |
+| age             |                                       +-----------------+
+| email           |
++-----------------+
+```
+
+### Explication des cardinalités
+
+1. **`etudiants` → `inscriptions`** :
+   - **1:N** (Un étudiant peut s'inscrire à plusieurs cours).
+   - La flèche `1` pointe vers `etudiants`, et la flèche `N` pointe vers `inscriptions`.
+
+2. **`cours` → `inscriptions`** :
+   - **1:N** (Un cours peut avoir plusieurs étudiants inscrits).
+   - La flèche `1` pointe vers `cours`, et la flèche `N` pointe vers `inscriptions`.
+
+### Détails des tables
+
+- **Table `etudiants`** :
+  - `id` : Clé primaire (PK).
+  - `nom`, `prenom` : Informations de l'étudiant.
+  - `age` : Âge de l'étudiant (doit être ≥ 18).
+  - `email` : Adresse e-mail unique.
+
+- **Table `cours`** :
+  - `id` : Clé primaire (PK).
+  - `titre` : Titre du cours.
+  - `description` : Description du cours.
+
+- **Table `inscriptions`** :
+  - `id` : Clé primaire (PK).
+  - `etudiant_id` : Clé étrangère (FK) référençant `etudiants(id)`.
+  - `cours_id` : Clé étrangère (FK) référençant `cours(id)`.
+
+### Relations
+
+- La table `inscriptions` sert de table de liaison entre `etudiants` et `cours`.
+- Les cardinalités montrent que :
+  - Un étudiant peut s'inscrire à plusieurs cours.
+  - Un cours peut avoir plusieurs étudiants inscrits.
+
+
+----
 
 ### b) Modification d'une table
 ```sql
