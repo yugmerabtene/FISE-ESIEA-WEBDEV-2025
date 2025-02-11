@@ -6,6 +6,8 @@ Une base de données relationnelle est un ensemble de données organisées en ta
 ![image](https://github.com/user-attachments/assets/ea09e0e8-7cb1-44e2-bd51-1e2c5c198e73)
 
 
+**Documentation :** https://www.w3schools.com/sql/default.asp  
+
 ### Concepts clés
 - **Table** : Collection de données en lignes et colonnes.
 - **Schéma** : Organisation des tables et relations.
