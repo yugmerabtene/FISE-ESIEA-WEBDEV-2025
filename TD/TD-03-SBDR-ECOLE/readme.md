@@ -1,58 +1,4 @@
 
-```plaintext
-+-----------------+          +-----------------+          +-----------------+
-|   etudiants     |          |   inscriptions  |          |      cours      |
-+-----------------+          +-----------------+          +-----------------+
-| id (PK)         |<---1---->| etudiant_id (FK) |          | id (PK)         |
-| nom             |          | cours_id (FK)    |<---N---->| titre           |
-| prenom          |          +-----------------+          | description     |
-| age             |                                       +-----------------+
-| email           |
-+-----------------+
-```
-
-### Explication des cardinalités
-
-1. **`etudiants` → `inscriptions`** :
-   - **1:N** (Un étudiant peut s'inscrire à plusieurs cours).
-   - La flèche `1` pointe vers `etudiants`, et la flèche `N` pointe vers `inscriptions`.
-
-2. **`cours` → `inscriptions`** :
-   - **1:N** (Un cours peut avoir plusieurs étudiants inscrits).
-   - La flèche `1` pointe vers `cours`, et la flèche `N` pointe vers `inscriptions`.
-
-### Détails des tables
-
-- **Table `etudiants`** :
-  - `id` : Clé primaire (PK).
-  - `nom`, `prenom` : Informations de l'étudiant.
-  - `age` : Âge de l'étudiant (doit être ≥ 18).
-  - `email` : Adresse e-mail unique.
-
-- **Table `cours`** :
-  - `id` : Clé primaire (PK).
-  - `titre` : Titre du cours.
-  - `description` : Description du cours.
-
-- **Table `inscriptions`** :
-  - `id` : Clé primaire (PK).
-  - `etudiant_id` : Clé étrangère (FK) référençant `etudiants(id)`.
-  - `cours_id` : Clé étrangère (FK) référençant `cours(id)`.
-
-### Relations
-
-- La table `inscriptions` sert de table de liaison entre `etudiants` et `cours`.
-- Les cardinalités montrent que :
-  - Un étudiant peut s'inscrire à plusieurs cours.
-  - Un cours peut avoir plusieurs étudiants inscrits.
-
-
-----
-
-Voici une version corrigée et complétée de votre TD sur la base de données d'une école informatique. J'ai ajouté plus de requêtes, un jeu de données plus étendu, et j'ai veillé à ce que les jointures fonctionnent correctement. J'ai également structuré le document pour qu'il soit plus clair et complet.
-
----
-
 # Travaux Dirigés : Base de Données d'une École Informatique
 
 ## 1. Data Definition Language (DDL) - Langage de Définition de Données
@@ -330,3 +276,49 @@ GROUP BY etudiants.id;
 ```
 
 ---
+```plaintext
++-----------------+          +-----------------+          +-----------------+
+|   etudiants     |          |   inscriptions  |          |      cours      |
++-----------------+          +-----------------+          +-----------------+
+| id (PK)         |<---1---->| etudiant_id (FK) |          | id (PK)         |
+| nom             |          | cours_id (FK)    |<---N---->| titre           |
+| prenom          |          +-----------------+          | description     |
+| age             |                                       +-----------------+
+| email           |
++-----------------+
+```
+
+### Explication des cardinalités
+
+1. **`etudiants` → `inscriptions`** :
+   - **1:N** (Un étudiant peut s'inscrire à plusieurs cours).
+   - La flèche `1` pointe vers `etudiants`, et la flèche `N` pointe vers `inscriptions`.
+
+2. **`cours` → `inscriptions`** :
+   - **1:N** (Un cours peut avoir plusieurs étudiants inscrits).
+   - La flèche `1` pointe vers `cours`, et la flèche `N` pointe vers `inscriptions`.
+
+### Détails des tables
+
+- **Table `etudiants`** :
+  - `id` : Clé primaire (PK).
+  - `nom`, `prenom` : Informations de l'étudiant.
+  - `age` : Âge de l'étudiant (doit être ≥ 18).
+  - `email` : Adresse e-mail unique.
+
+- **Table `cours`** :
+  - `id` : Clé primaire (PK).
+  - `titre` : Titre du cours.
+  - `description` : Description du cours.
+
+- **Table `inscriptions`** :
+  - `id` : Clé primaire (PK).
+  - `etudiant_id` : Clé étrangère (FK) référençant `etudiants(id)`.
+  - `cours_id` : Clé étrangère (FK) référençant `cours(id)`.
+
+### Relations
+
+- La table `inscriptions` sert de table de liaison entre `etudiants` et `cours`.
+- Les cardinalités montrent que :
+  - Un étudiant peut s'inscrire à plusieurs cours.
+  - Un cours peut avoir plusieurs étudiants inscrits.
