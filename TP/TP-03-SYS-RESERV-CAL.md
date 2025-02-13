@@ -110,12 +110,12 @@ Le projet consiste à développer un système de réservation en ligne avec un c
 
 ### **Livrables**
 
-1. **Diagramme de Séquence** :
+1. **Use Case** :
+   - Description détaillée des cas d'utilisation avec les acteurs et les scénarios.
+
+2. **Diagramme de Séquence** :
    - Diagramme illustrant les interactions entre l'utilisateur et le système pour les principales fonctionnalités (création de compte, prise de rendez-vous, modification des informations personnelles, suppression de compte).
 
-2. **Use Case** :
-   - Description détaillée des cas d'utilisation avec les acteurs et les scénarios.
-   - 
 3. **Schéma de Base de Données** :
    - Schéma illustrant les tables et leurs relations avec les cardinalités.
 
