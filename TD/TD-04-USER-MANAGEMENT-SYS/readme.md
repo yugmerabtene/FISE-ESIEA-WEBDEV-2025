@@ -11,6 +11,7 @@ L'objectif de ce TD est de créer un système de gestion d'utilisateurs en PHP p
 2. **Page d'inscription (`register.php`)** :
    - Formulaire pour créer un compte (nom d'utilisateur et mot de passe).
    - Le mot de passe doit être hashé avant d'être stocké dans la base de données.
+   - Vérification de l'unicité du nom d'utilisateur.
    - Redirection vers la page de connexion après inscription.
 3. **Page de connexion (`login.php`)** :
    - Formulaire de connexion.
@@ -103,7 +104,7 @@ session_start();
 Ce fichier contient le pied de page commun à toutes les pages.
 ```php
     <footer>
-        <p>&copy; 2025 - User Management System</p>
+        <p>&copy; 2023 - User Management System</p>
     </footer>
 </body>
 </html>
@@ -201,14 +202,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = htmlspecialchars($_POST['username'], ENT_QUOTES, 'UTF-8');
     $password = $_POST['password'];
 
-    // Crée un nouvel utilisateur
-    if (createUser($username, $password)) {
-        // Si l'inscription est réussie, redirige vers la page de connexion
-        header('Location: login.php');
-        exit;
+    // Vérifie si le nom d'utilisateur est déjà utilisé
+    $pdo = getPDO();
+    $sql = "SELECT username FROM users WHERE username = :username";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(['username' => $username]);
+    $existingUser = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($existingUser) {
+        // Si le nom d'utilisateur existe déjà, affiche un message d'erreur
+        echo "<p>Username already exists. Please choose a different username.</p>";
     } else {
-        // Si l'inscription échoue, affiche un message d'erreur
-        echo "<p>Error during account creation.</p>";
+        // Crée un nouvel utilisateur
+        if (createUser($username, $password)) {
+            // Si l'inscription est réussie, redirige vers la page de connexion
+            header('Location: login.php');
+            exit;
+        } else {
+            // Si l'inscription échoue, affiche un message d'erreur
+            echo "<p>Error during account creation.</p>";
+        }
     }
 }
 ?>
@@ -479,9 +492,12 @@ footer {
 3. **Hachage des mots de passe** :
    - Utilisation de `password_hash()` pour hasher les mots de passe avant de les stocker dans la base de données.
 
+4. **Vérification de l'unicité du nom d'utilisateur** :
+   - Avant de créer un nouvel utilisateur, vérifie si le nom d'utilisateur existe déjà dans la base de données.
+
 ---
 
-### **En résumé**
+### **En Résumé ce que vous avez appris**
 
 Ce TD vous a permis de créer un système de gestion d'utilisateurs complet avec une base de données MySQL et des mesures de sécurité contre les attaques XSS et SQL Injection. Vous avez appris à :
 - Créer une base de données et une table MySQL.
@@ -489,3 +505,4 @@ Ce TD vous a permis de créer un système de gestion d'utilisateurs complet avec
 - Utiliser PHP pour interagir avec la base de données de manière sécurisée.
 - Gérer les sessions pour protéger les pages.
 - Afficher les informations de l'utilisateur depuis la base de données.
+- Vérifier l'unicité du nom d'utilisateur lors de l'inscription.
