@@ -1,13 +1,13 @@
 # Chapitre 14 : PHP Procédural
 
 ## Introduction
-PHP est un langage de programmation côté serveur utilisé principalement pour le développement web. Il permet de générer du contenu dynamique, traiter des formulaires, interagir avec des bases de données et gérer des sessions utilisateur.
+PHP est un langage de programmation côté serveur largement utilisé pour le développement web. Il permet de générer du contenu dynamique, traiter des formulaires, interagir avec des bases de données et gérer des sessions utilisateur. Ce cours se concentre sur la programmation procédurale en PHP, en évitant pour l'instant la programmation orientée objet (POO).
 
 ---
 
 ## Syntaxe de base de PHP
 
-Un script PHP commence par `<?php` et se termine par `?>`. PHP s'intègre directement dans un fichier HTML.
+Un script PHP commence par `<?php` et se termine par `?>`. PHP peut être intégré directement dans un fichier HTML.
 
 ### Exemples de base
 ```php
@@ -134,7 +134,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 ---
 
-## Organisation du Code avec `include` et `namespace`
+## Organisation du Code avec `include` et `require`
 
 ### Inclusion de fichiers
 Plutôt que de répéter du code, on peut utiliser `include` ou `require` pour inclure des fichiers PHP externes.
@@ -158,28 +158,9 @@ echo "Configuration chargée !";
 ?>
 ```
 
-### Utilisation des Namespaces
-Les **namespaces** permettent d'organiser le code et d'éviter les conflits entre noms de classes ou de fonctions.
-
-**Exemple :**
-```php
-namespace MonProjet;
-class Utilisateur {
-    public function direBonjour() {
-        return "Bonjour!";
-    }
-}
-```
-
-Utilisation du namespace :
-```php
-<?php
-require 'Utilisateur.php';
-use MonProjet\Utilisateur;
-$u = new Utilisateur();
-echo $u->direBonjour();
-?>
-```
+### Différence entre `include` et `require`
+- `include` : Génère un avertissement si le fichier n'est pas trouvé, mais le script continue.
+- `require` : Génère une erreur fatale si le fichier n'est pas trouvé, et le script s'arrête.
 
 ---
 
@@ -219,3 +200,67 @@ foreach ($result as $row) {
     echo "Nom : " . $row["nom"] . " - Email : " . $row["email"] . "<br>";
 }
 ```
+
+---
+
+## Gestion des erreurs et débogage
+
+### Affichage des erreurs
+Pour afficher les erreurs pendant le développement, vous pouvez activer l'affichage des erreurs dans votre script PHP :
+```php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+```
+
+### Journalisation des erreurs
+Vous pouvez également journaliser les erreurs dans un fichier log :
+```php
+ini_set('log_errors', 1);
+ini_set('error_log', '/chemin/vers/votre/fichier.log');
+```
+
+---
+
+## Manipulation des fichiers
+
+### Lire un fichier
+```php
+$contenu = file_get_contents('fichier.txt');
+echo $contenu;
+```
+
+### Écrire dans un fichier
+```php
+file_put_contents('fichier.txt', 'Nouveau contenu');
+```
+
+### Vérifier l'existence d'un fichier
+```php
+if (file_exists('fichier.txt')) {
+    echo "Le fichier existe.";
+} else {
+    echo "Le fichier n'existe pas.";
+}
+```
+
+---
+
+## Gestion des sessions et cookies
+
+### Sessions
+Les sessions permettent de conserver des données sur plusieurs pages.
+```php
+session_start();
+$_SESSION['utilisateur'] = 'Jean';
+echo $_SESSION['utilisateur'];
+```
+
+### Cookies
+Les cookies permettent de stocker des données sur le navigateur de l'utilisateur.
+```php
+setcookie('nom', 'Jean', time() + 3600, '/');
+echo $_COOKIE['nom'];
+```
+
+---
