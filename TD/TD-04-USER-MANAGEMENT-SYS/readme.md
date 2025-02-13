@@ -103,7 +103,7 @@ session_start();
 Ce fichier contient le pied de page commun à toutes les pages.
 ```php
     <footer>
-        <p>&copy; 2023 - User Management System</p>
+        <p>&copy; 2025 - User Management System</p>
     </footer>
 </body>
 </html>
