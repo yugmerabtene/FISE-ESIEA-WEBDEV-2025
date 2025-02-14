@@ -78,13 +78,12 @@ Le projet consiste en la création d'un site web statique utilisant Bootstrap po
 
 ## 8. Livrable et grille de notation (20 points)
 
-- **Structure du site : 12 points**
+- **Structure du site : 16 points**
     - Page d'accueil : **4 points**
     - Page menu : **4 points**
     - Page réservation : **4 points**
-- **Versioning : 8 points**
-    - Utilisation de Git pour le suivi des versions : **2 points**
-    - Création d’un dépôt Git avec une arborescence claire : **2 points**
+    - Site 100% responsive **4 points**
+- **Versioning : 4 points**
     - Utilisation de branches pour les nouvelles fonctionnalités et corrections : **2 points**
     - Des commits réguliers et clairs : **2 points**
 
