@@ -1,28 +1,45 @@
 ### TD : Système de Gestion d'Utilisateurs avec Base de Données MySQL et Sécurité
 
+---
+
 #### **Énoncé**
 
-L'objectif de ce TD est de créer un système de gestion d'utilisateurs en PHP procédural avec une base de données MySQL. Le système permettra aux utilisateurs de créer un compte, de se connecter, et d'accéder à une page de profil protégée. Le frontend sera en HTML/CSS, et le backend en PHP procédural. Des mesures de sécurité contre les attaques XSS et SQL Injection seront mises en place.
+L'objectif de ce TD est de créer un système de gestion d'utilisateurs en **PHP procédural** avec une base de données **MySQL**. Le système permettra aux utilisateurs de :
+1. Créer un compte.
+2. Se connecter.
+3. Accéder à une page de profil protégée.
+
+Le frontend sera en **HTML/CSS**, et le backend en **PHP procédural**. Des mesures de sécurité contre les attaques **XSS** et **SQL Injection** seront mises en place.
+
+---
 
 #### **Fonctionnalités attendues :**
-1. **Page d'accueil (`index.php`)** : 
-   - Une petite présentation dans le main.
+
+1. **Page d'accueil (`index.php`)** :
+   - Une petite présentation dans le `main`.
    - Un menu avec des liens vers la page de connexion (`login.php`) et la page d'inscription (`register.php`).
+
 2. **Page d'inscription (`register.php`)** :
    - Formulaire pour créer un compte (nom d'utilisateur et mot de passe).
-   - Le mot de passe doit être hashé avant d'être stocké dans la base de données.
+   - Le mot de passe doit être **hashé** avant d'être stocké dans la base de données.
    - Vérification de l'unicité du nom d'utilisateur.
    - Redirection vers la page de connexion après inscription.
+
 3. **Page de connexion (`login.php`)** :
    - Formulaire de connexion.
    - Redirection vers la page de profil après connexion.
+
 4. **Page de profil (`profile.php`)** :
    - Page protégée accessible uniquement après connexion.
-   - Affichage des informations de l'utilisateur (nom d'utilisateur et mot de passe hashé) depuis la base de données.
+   - Affichage des informations de l'utilisateur (nom d'utilisateur) depuis la base de données.
+
 5. **Déconnexion** :
    - Un lien pour se déconnecter et revenir à la page de connexion.
 
+---
+
 #### **Architecture du projet :**
+
 ```
 /projet
     /assets
@@ -47,6 +64,8 @@ L'objectif de ce TD est de créer un système de gestion d'utilisateurs en PHP p
 
 ### **Étapes et Code Complet**
 
+---
+
 #### **1. Création de la Base de Données MySQL**
 
 Exécutez le script SQL suivant pour créer la base de données et la table `users` :
@@ -66,7 +85,9 @@ CREATE TABLE users (
 ---
 
 #### **2. Fichier `header.php`**
+
 Ce fichier contient l'en-tête commun à toutes les pages.
+
 ```php
 <?php
 // Démarre la session pour gérer les utilisateurs connectés
@@ -101,7 +122,9 @@ session_start();
 ---
 
 #### **3. Fichier `footer.php`**
+
 Ce fichier contient le pied de page commun à toutes les pages.
+
 ```php
     <footer>
         <p>&copy; 2023 - User Management System</p>
@@ -113,7 +136,9 @@ Ce fichier contient le pied de page commun à toutes les pages.
 ---
 
 #### **4. Fichier `index.php`**
+
 Ce fichier contient une petite présentation et un menu avec des liens vers les pages de connexion et d'inscription.
+
 ```php
 <?php
 // Inclut l'en-tête de la page
@@ -135,7 +160,9 @@ require 'footer.php';
 ---
 
 #### **5. Fichier `login.php`**
+
 Ce fichier gère la connexion des utilisateurs.
+
 ```php
 <?php
 // Inclut l'en-tête de la page
@@ -186,7 +213,9 @@ require 'footer.php';
 ---
 
 #### **6. Fichier `register.php`**
+
 Ce fichier gère l'inscription des utilisateurs.
+
 ```php
 <?php
 // Inclut l'en-tête de la page
@@ -215,7 +244,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         // Crée un nouvel utilisateur
         if (createUser($username, $password)) {
-            // Si l'inscription est réussie, redirige vers la page de connexion
+            // Si l'inscription est réussie, redirige vers la page de connexion avec un message de succès
+            $_SESSION['success_message'] = "Registration successful! Please login.";
             header('Location: login.php');
             exit;
         } else {
@@ -248,7 +278,9 @@ require 'footer.php';
 ---
 
 #### **7. Fichier `profile.php`**
+
 Ce fichier affiche la page de profil protégée avec les informations de l'utilisateur depuis la base de données.
+
 ```php
 <?php
 // Inclut l'en-tête de la page
@@ -273,7 +305,6 @@ if ($user) {
     echo "<p>Here are your details :</p>";
     echo "<ul>";
     echo "<li><strong>Username :</strong> " . htmlspecialchars($user['username'], ENT_QUOTES, 'UTF-8') . "</li>";
-    echo "<li><strong>Hashed Password :</strong> " . htmlspecialchars($user['password'], ENT_QUOTES, 'UTF-8') . "</li>";
     echo "</ul>";
 } else {
     // Si une erreur survient lors de la récupération des informations, affiche un message d'erreur
@@ -288,7 +319,9 @@ require 'footer.php';
 ---
 
 #### **8. Fichier `functions/getPDO.php`**
+
 Ce fichier contient la fonction pour établir une connexion à la base de données.
+
 ```php
 <?php
 function getPDO() {
@@ -305,8 +338,8 @@ function getPDO() {
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $pdo;
     } catch (PDOException $e) {
-        // En cas d'erreur de connexion, affiche un message d'erreur et arrête le script
-        die("Connection error : " . $e->getMessage());
+        // En cas d'erreur de connexion, affiche un message d'erreur générique et arrête le script
+        die("Database connection error. Please try again later.");
     }
 }
 ?>
@@ -315,7 +348,9 @@ function getPDO() {
 ---
 
 #### **9. Fichier `functions/createUser.php`**
+
 Ce fichier contient la fonction pour créer un nouvel utilisateur.
+
 ```php
 <?php
 // Inclut le fichier de connexion à la base de données
@@ -338,7 +373,9 @@ function createUser($username, $password) {
 ---
 
 #### **10. Fichier `functions/login.php`**
+
 Ce fichier contient la fonction pour vérifier les informations de connexion.
+
 ```php
 <?php
 // Inclut le fichier de connexion à la base de données
@@ -355,7 +392,7 @@ function login($username, $password) {
     // Récupère le résultat de la requête
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Vérifie si le mot de passe fourni correspond au mot de passe hashé
+    // Vérifie si l'utilisateur existe et si le mot de passe fourni correspond au mot de passe hashé
     if ($result && password_verify($password, $result['password'])) {
         return true;
     }
@@ -367,7 +404,9 @@ function login($username, $password) {
 ---
 
 #### **11. Fichier `functions/getUserInfo.php`**
+
 Ce fichier contient la fonction pour récupérer les informations d'un utilisateur.
+
 ```php
 <?php
 // Inclut le fichier de connexion à la base de données
@@ -390,7 +429,9 @@ function getUserInfo($username) {
 ---
 
 #### **12. Fichier `functions/logout.php`**
+
 Ce fichier gère la déconnexion.
+
 ```php
 <?php
 // Démarre la session
@@ -406,7 +447,9 @@ exit;
 ---
 
 #### **13. Fichier `assets/css/style.css`**
+
 Ce fichier contient le style CSS pour le projet.
+
 ```css
 body {
     font-family: Arial, sans-serif;
@@ -504,5 +547,4 @@ Ce TD vous a permis de créer un système de gestion d'utilisateurs complet avec
 - Hasher les mots de passe avant de les stocker.
 - Utiliser PHP pour interagir avec la base de données de manière sécurisée.
 - Gérer les sessions pour protéger les pages.
-- Afficher les informations de l'utilisateur depuis la base de données.
-- Vérifier l'unicité du nom d'utilisateur lors de l'inscription.
+- Afficher les informations de l'utilisateur depuis la base de données
