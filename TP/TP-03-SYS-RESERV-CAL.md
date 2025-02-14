@@ -57,7 +57,7 @@ Le projet consiste à développer un système de réservation en ligne avec un c
 ### **Contraintes Techniques**
 
 1. **Technologies** :
-   - Frontend : HTML, CSS, JavaScript (sans framework).
+   - Frontend : Bootstrap.
    - Backend : PHP procédural.
    - Base de données : MySQL.
 
