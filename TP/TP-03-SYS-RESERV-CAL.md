@@ -20,7 +20,7 @@ Le projet consiste à développer un système de réservation en ligne avec un c
    - **Connexion et déconnexion** : (2 points)  
      - Formulaire de connexion avec email et mot de passe.
      - Redirection vers le profil après connexion réussie.
-   - **Modification des informations personnelles** :  (2 points))
+   - **Modification des informations personnelles** :  (2 points)
      - Possibilité de modifier le nom, prénom, date de naissance, adresse postale, numéro de téléphone, et email.
      - Vérification de l'unicité de l'email lors de la modification.
    - **Suppression du compte** :  (2 points)
