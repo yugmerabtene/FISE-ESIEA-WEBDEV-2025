@@ -12,44 +12,45 @@ Le projet consiste à développer un système de réservation en ligne avec un c
 
 ### **Descriptif Fonctionnel**
 
-1. **Gestion des Utilisateurs** :
-   - **Création de compte** :
+1. **Gestion des Utilisateurs** : 
+   - **Création de compte** : (2 points)  
      - Formulaire d'inscription avec nom, prénom, date de naissance, adresse postale, numéro de téléphone, email, et mot de passe.
      - Vérification de l'unicité de l'email.
      - Envoi d'un email de vérification pour activer le compte.
-   - **Connexion et déconnexion** :
+   - **Connexion et déconnexion** : (2 points)  
      - Formulaire de connexion avec email et mot de passe.
      - Redirection vers le profil après connexion réussie.
-   - **Modification des informations personnelles** :
+   - **Modification des informations personnelles** :  (2 points))
      - Possibilité de modifier le nom, prénom, date de naissance, adresse postale, numéro de téléphone, et email.
      - Vérification de l'unicité de l'email lors de la modification.
-   - **Suppression du compte** :
+   - **Suppression du compte** :  (2 points)
      - Possibilité de supprimer le compte.
      - Suppression de toutes les données associées en base de données.
 
 2. **Gestion des Rendez-vous** :
-   - **Prise de rendez-vous** :
+   - **Prise de rendez-vous** : (2 points)  
      - Calendrier interactif pour la sélection des dates et heures.
      - Vérification de la disponibilité des créneaux horaires.
      - Enregistrement du rendez-vous si le créneau est disponible.
-   - **Affichage des rendez-vous** :
+   - **Affichage des rendez-vous** : (2 points)  
      - Affichage des rendez-vous pris par l'utilisateur.
-   - **Annulation de rendez-vous** :
+   - **Annulation de rendez-vous** :  (2 points)   
      - Possibilité d'annuler un rendez-vous pris.
      - Libération du créneau horaire pour d'autres utilisateurs.
 
 3. **Sécurité** :
-   - **Protection contre les attaques CSRF** :
+   - **Protection contre les attaques CSRF** : (1 points)
      - Ajout de tokens CSRF pour sécuriser les formulaires.
-   - **Hachage des mots de passe** :
+   - **Hachage des mots de passe** :  (1 points)
      - Utilisation de `password_hash()` pour hasher les mots de passe avant de les stocker.
-   - **Vérification de l'unicité de l'email** :
+   - **Vérification de l'unicité de l'email** :  (1 points)
      - Vérification de l'unicité de l'email lors de l'inscription et de la modification du profil.
+   - **Protection contre les attaques XSS et SQL Injection** : (1 points)
 
 4. **Interface Utilisateur** :
-   - **Calendrier interactif** :
+   - **Calendrier interactif** :  (1 points)
      - Interface utilisateur intuitive pour la sélection des dates et heures.
-   - **Formulaire de contact** :
+   - **Formulaire de contact** :  (1 points)
      - Formulaire pour les demandes de renseignements.
 
 ---
