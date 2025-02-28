@@ -1,315 +1,517 @@
-### DOM
-Le **Document Object Model (DOM)** est un ensemble d'outils permettant de manipuler des documents XML (et, par extension, également des documents HTML, qui sont probablement ceux qui nous intéressent le plus).
+## Cours JavaScript DOM | BOM et jQuery avec AJAX et Requêtes Asynchrones
 
-Avant de pouvoir utiliser ces outils et aides, le DOM transforme les fichiers XML en une structure arborescente, c'est-à-dire une hiérarchie de nœuds. Cet arbre représente à la fois le contenu du document et les relations entre les nœuds.
+### Module 1: Introduction au DOM
 
-![http://www.w3schools.com/js/pic_htmltree.gif](http://www.w3schools.com/js/pic_htmltree.gif)
+#### 1.1 Qu'est-ce que le DOM ?
+   - Le DOM (Document Object Model) représente la structure d'une page HTML sous forme d'arbre d'objets.
+   - Il permet la manipulation dynamique de la structure, du style et du contenu d'une page.
 
-#### Types de nœuds
-Notez comment, dans l'exemple ci-dessus, nous avons différents types de nœuds : la plupart sont étiquetés comme **Element**, mais d'autres sont marqués comme **Attribute** ou **Text**. Le DOM définit différents types de nœuds qui implémentent différentes interfaces. Voici une liste des types de nœuds les plus courants :
+     ![image](https://github.com/yugmerabtene/ESIEA-FISE-WEB-2024/assets/3670077/280d1040-3b8c-4dbe-95ca-c2377b9814d4)
 
-- **Document** : le nœud racine de tous les documents XML (HTML).
-- **DocumentType** : représente la définition du type de document (DTD) utilisée sur la page (balise doctype).
-- **Element** : représente une balise.
-- **Attr** : une paire clé-valeur représentant un attribut d'une balise.
-- **Text** : représente le contenu d'un nœud.
-- **Comment** : représente les commentaires XML/HTML.
 
-#### L'interface Node
-Un objet **Node** implémente et expose les propriétés et méthodes suivantes. Vous pouvez trouver une liste complète sur [MDN](https://developer.mozilla.org).
+#### 1.2 Accès au DOM avec JavaScript
+   - Utilisation de `document` pour accéder au DOM.
+   - Sélection d'éléments par ID, classe, balise.
 
-- `nodeName`
-- `nodeValue`
-- `nodeType`
-- `ownerDocument`
-- `firstChild`
-- `lastChild`
-- `childNodes`
-- `previousSibling`
-- `nextSibling`
-- `hasChildNodes()`
-- `attributes`
-- `parentNode`
-- `parentElement`
-- `appendChild(node)`
-- `removeChild(node)`
-- `replaceChild(newNode, previousNode)`
-- `insertBefore(newNode, previousNode)`
+   ```javascript
+   // JavaScript
+   let elementById = document.getElementById('monElementId');
+   let elementsByClass = document.getElementsByClassName('maClasse');
+   let elementsByTag = document.getElementsByTagName('div');
+   ```
 
-#### Accéder aux nœuds
-La manière la plus simple d'accéder aux nœuds est de les référencer directement en utilisant l'une des méthodes suivantes :
+#### 1.3 Manipulation du contenu avec JavaScript
+   - Modification du texte et de l'HTML d'un élément.
+   - Ajout et suppression d'éléments.
 
-- `document.querySelector(selector)` : retourne un **Element**. Le sélecteur peut être quelque chose comme `#some-id`, `.some-classname`, ou une balise. S'il y a plusieurs éléments correspondant au sélecteur, seul le premier est retourné.
-- `document.querySelectorAll(selector)` : retourne une **NodeList**.
-- `document.getElementById(id: string)` : retourne un **Element**.
-- `document.getElementsByClassName(classname: string)` : retourne une **HTMLCollection**.
-- `document.getElementsByTagName(tag: string)` : retourne une **HTMLCollection**.
-- `document.getElementsByName(name: string)` : retourne une **NodeList**.
+   ```javascript
+   // JavaScript
+   elementById.textContent = 'Nouveau texte';
+   elementById.innerHTML = '<strong>Nouveau texte en gras</strong>';
 
-Nous pouvons également utiliser la plupart de ces méthodes (sauf `getElementById` et `getElementByName`) sur n'importe quel nœud de type **Element**, qui agit comme l'élément racine de notre requête :
+   let newElement = document.createElement('p');
+   newElement.textContent = 'Contenu du nouvel élément';
+
+   document.body.appendChild(newElement);
+   document.body.removeChild(elementById);
+   ```
+
+#### 1.4 Accès au DOM avec jQuery
+   - Sélection d'éléments par ID, classe, balise.
+
+   ```javascript
+   // jQuery
+   let elementById = $('#monElementId');
+   let elementsByClass = $('.maClasse');
+   let elementsByTag = $('div');
+   ```
+
+#### 1.5 Manipulation du contenu avec jQuery
+   - Modification du texte et du HTML d'un élément.
+   - Ajout et suppression d'éléments.
+
+   ```javascript
+   // jQuery
+   elementById.text('Nouveau texte');
+   elementById.html('<strong>Nouveau texte en gras</strong>');
+
+   let newElement = $('<p>').text('Contenu du nouvel élément');
+   $('body').append(newElement);
+   elementById.remove();
+   ```
+
+#### Exercices
+   - Sélectionnez un élément par ID avec JavaScript et changez son texte, puis faites de même avec jQuery.
+   - Créez un nouvel élément et ajoutez-le à la page avec JavaScript, puis faites de même avec jQuery.
+
+### Module 2: Événements et gestionnaires d'événements
+
+#### 2.1 Introduction aux événements
+   - Types d'événements (clic, survol, etc.).
+   - Attribution d'événements via JavaScript.
+
+   ```javascript
+   // JavaScript
+   elementById.addEventListener('click', function() {
+       alert('Élément cliqué !');
+   });
+   ```
+
+#### 2.2 Gestionnaires d'événements
+   - Utilisation de `addEventListener`.
+   - Fonctions de gestion d'événements.
+
+   ```javascript
+   // JavaScript
+   function handleClick() {
+       alert('Élément cliqué !');
+   }
+
+   elementById.addEventListener('click', handleClick);
+   ```
+
+#### 2.3 Événements de formulaire
+   - Validation de formulaire.
+   - Soumission de formulaire.
+
+   ```javascript
+   // JavaScript
+   document.getElementById('monFormulaire').addEventListener('submit', function(event) {
+       event.preventDefault();
+       // Effectuez vos actions de validation ici
+   });
+   ```
+
+#### 2.4 Événements avec jQuery
+   - Attribution d'événements avec jQuery.
+
+   ```javascript
+   // jQuery
+   elementById.on('click', function() {
+       alert('Élément cliqué !');
+   });
+   ```
+
+#### Exercices
+   - Créez un bouton qui affiche une alerte lorsqu'il est cliqué avec JavaScript, puis faites de même avec jQuery.
+   - Validez un formulaire en utilisant JavaScript, puis faites de même avec jQuery.
+
+### Module 3: Manipulation du style, des classes, fonctions et callbacks
+
+#### 3.1 Modification du style
+   - Changement de propriétés CSS.
+   - Animation avec JavaScript.
+
+   ```javascript
+   // JavaScript
+   elementById.style.color = 'red';
+
+   // Animation avec classe CSS
+   elementById.classList.add('animate');
+   ```
+
+#### 3.2 Manipulation des classes
+   - Ajout et suppression de classes.
+   - Toggle de classes.
+
+   ```javascript
+   // JavaScript
+   elementById.classList.add('maNouvelleClasse');
+   elementById.classList.remove('ancienneClasse');
+   elementById.classList.toggle('toggleClasse');
+   ```
+
+#### 3.3 Fonctions en JavaScript
+   - Définition de fonctions.
+   - Passage de paramètres.
+   - Retour de valeurs.
+
+   ```javascript
+   // JavaScript
+   function additionner(a, b) {
+       return a + b;
+   }
+
+   let resultat = additionner(3, 4);
+   ```
+
+#### 3.4 Callbacks en JavaScript
+   - Utilisation de fonctions de rappel.
+   - Gestion asynchrone avec des callbacks.
+
+   ```javascript
+   // JavaScript
+   function effectuerCalcul(a, b, callback) {
+       let resultat = a + b;
+       callback(resultat);
+   }
+
+   function afficherResultat(resultat) {
+       console.log('Le résultat est :', resultat);
+   }
+
+   effectuerCalcul(5, 7, afficherResultat);
+   ```
+
+#### Exercices
+   - Créez une fonction en JavaScript qui prend deux paramètres et les multiplie, puis affichez le résultat.
+   - Utilisez une fonction de rappel pour effectuer une opération asynchrone (simulée) en JavaScript.
+
+### Module 4: Traverser et manipuler la structure
+
+#### 4.1 Traverser les éléments
+   - Parcours des éléments parents, enfants et frères.
+   - Utilisation de `parentNode`, `childNodes`, `nextSibling`, etc.
+
+   ```javascript
+   // JavaScript
+   let parentElement = elementById.parentNode;
+   let childElements = elementById.childNodes;
+   let nextSibling = elementById.nextSibling;
+   ```
+
+#### 4.2 Manipulation de l'arbre DOM
+   - Clonage d'éléments.
+   - Suppression d'éléments.
+
+   ```javascript
+   // JavaScript
+   let clonedElement = elementById.cloneNode(true);
+   document.body.removeChild(elementById);
+   ```
+
+#### 4.3 Traverser les éléments avec jQuery
+   - Parcours des éléments parents, enfants et frères.
+
+   ```javascript
+   // jQuery
+   let parentElement = elementById.parent();
+   let childElements = elementById.children();
+   let nextSibling = elementById.next();
+   ```
+
+#### 4.4 Manipulation de l'arbre DOM avec jQuery
+   - Clonage d'éléments.
+   - Suppression d'éléments.
 
 ```javascript
-const wrapper = document.querySelector('#wrapper');
-wrapper.getElementsByTagName('p');
-wrapper.getElementsByClassName('active');
-wrapper.getElementsByName('something');
-```
+   // jQuery
+   let clonedElement = elementById.clone();
+   elementById.remove();
+   ```
 
-Remarquez que certaines méthodes renvoient une **NodeList**, tandis que d'autres renvoient une **HTMLCollection**. Une **HTMLCollection** est toujours dynamique, ce qui signifie que les changements dans le DOM sont reflétés dans la collection. Une **NodeList**, en revanche, peut être statique ou dynamique. `document.querySelectorAll` renvoie une **NodeList** statique, ce qui signifie que les modifications ultérieures du DOM ne seront pas reflétées dans l'objet **NodeList** statique.
+### Module 5: AJAX et Requêtes Asynchrones
 
-**Note sur les performances** : dans certains navigateurs, l'utilisation de `querySelectorAll` entraîne des coûts de performance significatifs par rapport à, par exemple, `getElementsByTagName`. Cela est dû au fait qu'une **NodeList** statique doit avoir toutes les données nécessaires à l'avance, alors qu'une **NodeList** dynamique peut être générée et retournée beaucoup plus rapidement.
+#### 5.1 AJAX avec JavaScript
+   - Utilisation de l'objet `XMLHttpRequest` pour effectuer des requêtes asynchrones.
 
-Poursuivons… Nous pouvons également utiliser la plupart des propriétés de l'interface **Node** pour parcourir l'objet document en spécifiant le chemin jusqu'au nœud que nous essayons d'atteindre. Par exemple :
+   ```javascript
+   // JavaScript
+   const xhr = new XMLHttpRequest();
+   xhr.open('GET', 'https://api.example.com/data', true);
+   xhr.onreadystatechange = function() {
+       if (xhr.readyState === 4 && xhr.status === 200) {
+           const responseData = JSON.parse(xhr.responseText);
+           // Traitez les données de la réponse ici
+       }
+   };
+   xhr.send();
+   ```
 
-```javascript
-document.documentElement.lastChild;
-document.documentElement.childNodes[0];
-document.documentElement.firstChild.nextSibling;
-document.body.previousSibling;
-document.body.parentNode;
-```
+#### 5.2 AJAX avec jQuery
+   - Utilisation de la fonction `$.ajax()` pour effectuer des requêtes asynchrones avec jQuery.
 
-**Remarque annexe** : dans la plupart des cas, `parentNode` et `parentElement` renvoient la même chose. Ils diffèrent uniquement lorsque le nœud parent n'est pas de type **Element**, auquel cas `parentElement` renverra `null`. Par exemple :
+   ```javascript
+   // jQuery
+   $.ajax({
+       url: 'https://api.example.com/data',
+       method: 'GET',
+       dataType: 'json',
+       success: function(data) {
+           // Traitez les données de la réponse ici
+       },
+       error: function(error) {
+           console.error('Erreur lors de la requête AJAX:', error);
+       }
+   });
+   ```
 
-```javascript
-// les deux renvoient l'élément html
-document.body.parentNode === document.body.parentElement; // true
-document.documentElement.parentNode; // renvoie le nœud document
-document.documentElement.parentElement; // renvoie null
-```
+#### Exercice intégré : Utilisation de l'API BAN avec AJAX
 
-**Autre remarque rapide** : sur la différence entre `document` et `document.documentElement`. Ce dernier renvoie l'élément `html`, ce qui est probablement ce que vous cherchez si vous essayez de parcourir le DOM. De plus, ils ont des types de nœuds différents :
+##### Objectif
+   - Intégrer l'API BAN pour suggérer des adresses lors de la saisie en utilisant AJAX.
 
-```javascript
-document.nodeType; // 9 = DOCUMENT_NODE
-document.documentElement.nodeType; // 1 = ELEMENT_NODE
-```
+##### Instructions
 
-#### Attributs
-Les nœuds DOM de type **Element** exposent une propriété `attributes` de type **NamedNodeMap**, qui est une collection de tous les attributs d'un élément particulier.
+1. **Création de l'interface HTML**
+   - Créez un champ de texte (`input`) pour que l'utilisateur saisisse une adresse.
+   - Ajoutez un élément (`ul` ou `div`) pour afficher les suggestions d'adresses.
 
-```javascript
-const element = document.querySelector('#title');
-const className = element.attributes.class; // notation par point
-const firstAttribute = element.attributes[0]; // notation par tableau
-```
+   ```html
+   <!-- HTML -->
+   <input type="text" id="adresseInput" placeholder="Saisissez une adresse">
+   <ul id="suggestionsList"></ul>
+   ```
 
-Notez que tout élément dans la collection `attributes` est un objet de type **Node** pour lequel `nodeType = 2`, c'est-à-dire : **ATTRIBUTE_NODE**.
+2. **Récupération des suggestions avec AJAX**
+   - Utilisez AJAX pour détecter les changements dans le champ de texte.
+   - À chaque changement, appelez l'API BAN pour obtenir des suggestions d'adresses.
 
-```javascript
-element.attributes.class.nodeType; // renvoie 2 = ATTRIBUTE_NODE
-```
+   ```javascript
+   // JavaScript avec AJAX
+   const adresseInput = document.getElementById('adresseInput');
+   const suggestionsList = document.getElementById('suggestionsList');
 
-Nous pouvons obtenir, définir et supprimer des attributs en utilisant ces méthodes :
+   adresseInput.addEventListener('input', function() {
+       const inputValue = adresseInput.value;
 
-```javascript
-element.getAttribute('class');
-element.setAttribute('class', 'new-classname');
-element.setAttributeNode(attributeNode);
-element.removeAttribute('class');
-```
+       const xhr = new XMLHttpRequest();
+       xhr.open('GET', `https://api-adresse.data.gouv.fr/search/?q=${inputValue}`, true);
+       xhr.onreadystatechange = function() {
+           if (xhr.readyState === 4 && xhr.status === 200) {
+               const data = JSON.parse(xhr.responseText);
+               const suggestions = data.features;
+               afficherSuggestions(suggestions);
+           }
+       };
+       xhr.send();
+   });
 
-La spécification DOM HTML permet d'accéder et de modifier tous les attributs directement en assignant de nouvelles valeurs :
+   function afficherSuggestions(suggestions) {
+       suggestionsList.innerHTML = ''; // Efface les anciennes suggestions
 
-```html
-<img src="image.jpg" alt="Ceci est une image" class="logo logo-sm" />
-```
-```javascript
-const image = document.querySelector('.logo');
-image.src; // renvoie "image.jpg"
-image.alt = "Ceci est une image GÉNIALE"; // met à jour le texte alternatif
-```
+       suggestions.forEach(suggestion => {
+           const li = document.createElement('li');
+           li.textContent = suggestion.properties.label;
+           suggestionsList.appendChild(li);
+       });
+   }
+   ```
 
-Cela est valable pour tous les attributs sauf `class`. En effet, `class` est un mot-clé réservé utilisé depuis ES6. C'est pourquoi nous devons utiliser le nom alternatif `className`. Il en va de même pour l'attribut `for` dans l'élément `label`, par exemple : nous utilisons `htmlFor` à la place.
+3. **Utilisation de jQuery pour AJAX (optionnel)**
+   - Si vous préférez utiliser jQuery, vous pouvez également effectuer ces opérations avec jQuery.
 
-```javascript
-image.className; // renvoie "logo logo-sm"
-image.class; // renvoie undefined
-```
+   ```javascript
+   // jQuery avec AJAX
+   $(document).ready(function() {
+       $('#adresseInput').on('input', function() {
+           const inputValue = $(this).val();
 
-Pour les classes CSS, nous avons également accès à la propriété `classList`, qui est une collection de type **DOMTokenList** listant tous les noms de classes de l'élément. Cette interface implémente quatre méthodes importantes : `add`, `remove`, `toggle` et `contains`.
+           $.ajax({
+               url: `https://api-adresse.data.gouv.fr/search/?q=${inputValue}`,
+               method: 'GET',
+               dataType: 'json',
+               success: function(data) {
+                   const suggestions = data.features;
+                   afficherSuggestions(suggestions);
+               },
+               error: function(error) {
+                   console.error('Erreur lors de la récupération des suggestions:', error);
+               }
+           });
+       });
+   });
+   ```
 
-```javascript
-image.classList; // renvoie ["logo", "logo-sm"]
-image.classList.add('logo-awesome');
-image.classList.remove('logo-sm');
-image.classList.toggle('active');
-image.classList.contains('this-class-doesnt-exist');
-image.classList; // renvoie maintenant ["logo", "logo-awesome", "active"]
-```
+### Ressources additionnelles
 
-Une dernière chose, cette fois sur la liste de toutes les propriétés CSS calculées d'un élément. Il existe une méthode appelée `window.getComputedStyles(element)` à laquelle vous passez votre élément, et elle renvoie un énorme objet de type **CSSStyleDeclaration** que vous pouvez utiliser pour déterminer les styles calculés d'un élément, peu importe comment ils ont été appliqués.
+#### Cours W3Schools sur le DOM JavaScript
+   - [W3Schools JavaScript HTML DOM](https://www.w3schools.com/js.asp)
 
-```javascript
-getComputedStyle(image).width; // renvoie la largeur réelle de l'image
-```
+---
 
-#### Créer, supprimer et remplacer des nœuds
-Il existe différentes méthodes d'usine attachées à l'objet `document` que nous pouvons utiliser pour créer des nœuds de différents types. Les plus courantes sont :
 
-- `document.createElement(tag: string)` : **Element**
-- `document.createAttribute(name: string)` : **Attr**
-- `document.createTextNode(text: string)` : **Text**
-- `document.createComment(comment: string)` : **Comment**
 
-Quelques exemples :
+# Cours sur le DOM et le BOM en JavaScript
 
-```javascript
-const p = document.createElement('p');
-const blurb = document.createTextNode('salut mec');
-const attr = document.createAttribute('class');
-p.appendChild(blurb);
-attr.value = 'my-custom-class';
-p.setAttributeNode(attr);
-p.setAttribute('is-awesome', true);
-```
+## Introduction :
 
-Pour supprimer des nœuds, utilisez la méthode `removeChild` en interrogeant d'abord le parent. `removeChild` prend comme paramètre l'élément que nous essayons de supprimer.
+Le DOM (Document Object Model) et le BOM (Browser Object Model) sont deux interfaces essentielles en JavaScript pour interagir avec les documents HTML et le navigateur lui-même. Dans ce cours, nous allons explorer en détail ces deux modèles, en fournissant des exemples pratiques et en mettant en évidence les bonnes pratiques de développement.
 
-Il existe également la méthode `remove` que nous pouvons utiliser sur les éléments, bien qu'elle ne soit pas prise en charge sur Internet Explorer et nécessite un polyfill.
+## Le DOM (Document Object Model) :
 
-```javascript
-const element = document.querySelector('#title');
-element.parentNode.removeChild(element);
-element.remove(); // ceci ne fonctionne pas sur IE !
-```
+Le DOM est une interface de programmation d'application qui représente la structure d'un document HTML ou XML sous forme d'un arbre d'objets. Il fournit une manière de manipuler dynamiquement la structure, le style et le contenu d'une page web.
 
-Nous pouvons remplacer un nœud via la méthode `replaceChild`. C'est un processus similaire à celui utilisé pour supprimer un nœud : nous interrogeons d'abord le nœud parent, puis nous appelons la méthode `replaceChild` sur le parent en passant le nouvel élément en premier et l'ancien élément (celui que nous voulons remplacer) en second paramètre, et nous récupérons le nœud remplacé en retour.
+### Sélection des éléments :
 
-```javascript
-const oldElement = document.querySelector('#title');
-const newElement = document.createElement('p');
-const newElementText = document.createTextNode('notre nouveau titre');
-newElement.appendChild(newElementText);
-const replacedNode = oldElement.parentNode.replaceChild(newElement, oldElement);
-replacedNode === oldElement; // true
-```
+Pour interagir avec les éléments HTML d'une page, nous utilisons différentes méthodes de sélection.
 
-#### Relations entre nœuds
-Il existe plusieurs façons d'établir une relation entre deux nœuds :
+#### Méthodes de sélection :
 
-- `element.append`
-- `element.appendChild`
-- `element.insertBefore`
-- `element.insertAdjacentElement`
+- `document.getElementById()`: Sélectionne un élément par son ID.
+- `document.getElementsByClassName()`: Sélectionne des éléments par leur classe.
+- `document.getElementsByTagName()`: Sélectionne des éléments par leur balise.
+- `document.querySelector()`: Sélectionne le premier élément qui correspond au sélecteur CSS spécifié.
+- `document.querySelectorAll()`: Sélectionne tous les éléments qui correspondent au sélecteur CSS spécifié.
 
-#### Événements
-Chaque élément HTML a sa propre liste de types d'événements pris en charge. Nous écoutons les événements sur un élément, et chaque fois que l'événement est déclenché, nous le gérons via une fonction appelée **gestionnaire d'événements**.
-
-Un élément peut écouter et répondre à plusieurs types d'événements.
-Un type d'événement peut être géré par plusieurs éléments.
-
-Vous pouvez lier des gestionnaires d'événements aux éléments via la méthode `addEventListener`. Le premier argument est le nom de l'événement, le second est le gestionnaire d'événements :
-
-```javascript
-const button = document.querySelector('#button');
-button.addEventListener('click', handleClick);
-function handleClick(event) {
-  console.log('cliqué');
-}
-```
-
-Notre fonction de gestion d'événements reçoit un objet événement passé en paramètre.
-
-Pour arrêter d'écouter un événement sur un élément particulier, utilisez la méthode `removeEventListener` sur celui-ci :
+Exemple :
 
 ```javascript
-button.removeEventListener('click', handleClick);
+// Sélection par ID
+let elementById = document.getElementById('monElement');
+
+// Sélection par classe
+let elementsByClass = document.getElementsByClassName('maClasse');
+
+// Sélection par balise
+let elementsByTag = document.getElementsByTagName('div');
+
+// Sélection avec querySelector
+let firstElement = document.querySelector('.maClasse');
+let allElements = document.querySelectorAll('.maClasse');
 ```
 
-Il y a toutefois une subtilité. Pour supprimer des gestionnaires d'événements, la fonction de gestion doit être une fonction nommée, et vous devez conserver une référence à la fonction qui gère l'événement. En d'autres termes, les fonctions anonymes ne fonctionneront pas si vous prévoyez de supprimer l'écouteur plus tard.
+### Manipulation des éléments :
 
-Voici une liste de certains des types d'événements les plus utilisés :
+Une fois que nous avons sélectionné des éléments, nous pouvons les manipuler en modifiant leur contenu, leurs attributs, leurs styles, etc.
 
-- **Événements de souris** : `click`, `dblclick`, `mousedown`, `mouseout`, `mouseover`, `mouseup`, `mousemove`.
-- **Événements de clavier** : `keydown`, `keypress`, `keyup`.
-- **Événements HTML** : `load`, `unload`, `abort`, `error`, `resize`, `change`, `submit`, `reset`, `scroll`, `focus`, `blur`.
-- **Événements DOM** : `DOMSubtreeModified`, `DOMNodeInserted`, `DOMNodeRemoved`.
+#### Manipulation du contenu :
 
-Pour une liste plus complète des types d'événements, consultez [ce lien](lien).
+- `innerHTML`: Modifie le contenu HTML d'un élément.
+- `innerText` / `textContent`: Modifie le texte d'un élément.
+- `createElement()`: Crée un nouvel élément.
+- `appendChild()`: Ajoute un élément enfant à un élément parent.
 
-### BOM
-Le **Browser Object Model (BOM)** permet à JavaScript de communiquer avec le navigateur sur des sujets autres que le contenu de la page.
-
-Il n'existe pas de normes officielles pour le BOM, bien que les fournisseurs de navigateurs aient implémenté presque les mêmes fonctionnalités pour assurer l'interopérabilité.
-
-![https://learn.javascript.ru/article/browser-environment/windowObjects.png](https://learn.javascript.ru/article/browser-environment/windowObjects.png)
-
-#### Variables et méthodes globales
-L'objet `window` est l'élément racine ultime, tout le reste y est attaches directement ou indirectement. Il n'est donc pas nécessaire de le référencer explicitement.
-
-Dans les navigateurs à onglets, chaque onglet possède son propre objet `window`, c'est-à-dire qu'il n'est pas partagé entre les onglets d'une même fenêtre.
-
-De plus, toutes les variables et fonctions qui ne sont pas attachées à un autre objet sont attachées à l'objet `window` et sont donc dans la portée globale. En d'autres termes : les variables globales deviennent des propriétés de l'objet `window`, tandis que les fonctions globales deviennent des méthodes de l'objet `window`.
-
-L'objet global `window` donne accès à :
-
-- **Propriétés** qui fournissent des informations sur la fenêtre du navigateur :
-```javascript
-// dimensions extérieures
-const outerHeight = window.outerHeight;
-const outerWidth = window.outerWidth;
-// dimensions intérieures
-const innerHeight = window.innerHeight;
-const innerWidth = window.innerWidth;
-```
-
-- **Méthodes** pour définir des minuteries et appeler une fonction de manière répétée :
-```javascript
-const timeout = setTimeout(callback, delay); // délai en ms
-const interval = setInterval(callback, delay); // délai en ms
-clearTimeout(timeout);
-clearInterval(interval);
-```
-
-Et bien d'autres. Voici une liste complète de toutes les propriétés et méthodes de l'objet global `window`.
-
-#### L'objet location
-En raison de l'absence de norme, l'objet `location` est attaché à la fois à `document` et à `window` :
+Exemple :
 
 ```javascript
-document.location === window.location; // renvoie true
+// Modification du contenu HTML
+element.innerHTML = '<p>Nouveau contenu</p>';
+
+// Modification du texte
+element.innerText = 'Nouveau texte';
+
+// Création d'un nouvel élément
+let newElement = document.createElement('div');
+newElement.innerText = 'Nouvel élément';
+
+// Ajout du nouvel élément
+parentElement.appendChild(newElement);
 ```
 
-Cet objet permet de lire et de manipuler l'URL dans la barre d'adresse du navigateur. Voici une liste des principales propriétés et méthodes qu'il expose (une liste plus complète est disponible [ici](lien)) :
+#### Manipulation des attributs :
 
-- `location.hash`
-- `location.host`
-- `location.hostname`
-- `location.href` : renvoie l'URL complète de la page actuelle. Nous pouvons également écrire dans cette propriété, provoquant une redirection vers la nouvelle valeur.
-- `location.pathname` : renvoie ce qui suit le nom d'hôte.
-- `location.port` : renvoie le numéro de port, mais uniquement s'il est défini dans l'URL.
-- `location.protocol` : renvoie le protocole utilisé pour accéder à la page.
-- `location.search` : renvoie ce qui suit le `?` dans l'URL.
-- `location.assign(url)` : navigue vers l'URL passée en paramètre.
-- `location.replace(url)` : similaire à `assign`, mais le site remplacé est retiré de l'historique de la session.
-- `location.reload()` : a le même effet que cliquer sur le bouton de rechargement du navigateur.
+- `getAttribute()`: Obtient la valeur d'un attribut.
+- `setAttribute()`: Définit la valeur d'un attribut.
+- `removeAttribute()`: Supprime un attribut.
 
-Plus d'informations sur l'interface `Location` sur [MDN](https://developer.mozilla.org).
+Exemple :
 
-#### L'objet history
-`window.history` permet de manipuler l'historique de la session du navigateur, c'est-à-dire les pages visitées dans l'onglet ou le cadre où la page actuelle est chargée.
+```javascript
+// Obtention de la valeur de l'attribut
+let value = element.getAttribute('href');
 
-- `history.length` : renvoie un entier représentant le nombre d'éléments dans l'historique de la session, y compris la page actuellement chargée.
-- `history.go(integer)` : redirige vers la page dans l'historique de la session identifiée par sa position relative par rapport à la page actuelle.
-- `history.back(integer)` : redirige vers la page précédente dans l'historique de la session, comme cliquer sur le bouton "Retour" du navigateur.
-- `history.forward(integer)` : redirige vers la page suivante dans l'historique de la session, comme cliquer sur le bouton "Avancer" du navigateur.
+// Définition de la valeur de l'attribut
+element.setAttribute('href', 'https://example.com');
 
-Plus d'informations sur l'interface `History` [ici](lien).
+// Suppression de l'attribut
+element.removeAttribute('href');
+```
 
-#### L'objet navigator
-`window.navigator` fournit des informations sur l'état et l'identité de l'agent utilisateur (c'est-à-dire le navigateur et le système d'exploitation utilisés par l'utilisateur).
+#### Manipulation des styles :
 
-- `navigator.userAgent` : renvoie l'agent utilisateur pour le navigateur actuel.
-- `navigator.language` : renvoie une chaîne représentant la langue préférée de l'utilisateur, généralement la langue de l'interface du navigateur.
-- `navigator.languages` : renvoie un tableau des langues connues de l'utilisateur, triées par préférence : `["en-GB", "en-US", "en"]`.
-- `navigator.getBattery()` : renvoie une promesse qui se résout en un objet `BatteryManager` fournissant non seulement des informations sur la batterie du système, mais aussi des événements pour surveiller son état.
-- `navigator.plugins` : renvoie une liste des plugins installés dans le navigateur.
-- `navigator.onLine` : renvoie un booléen indiquant si le navigateur fonctionne en ligne.
-- `navigator.geolocation` : renvoie un objet `Geolocation` permettant d'accéder à la position de l'appareil.
+- `style`: Permet d'accéder aux styles CSS d'un élément.
+- `classList`: Permet de gérer les classes CSS d'un élément.
 
-Il existe également d'autres propriétés sur lesquelles nous ne pouvons pas toujours compter :
+Exemple :
 
-- `navigator.appName` : devrait renvoyer le nom du navigateur.
-- `navigator.appVersion` : devrait renvoyer le numéro de version du navigateur.
-- `navigator.platform` : devrait renvoyer le nom de la plateforme du navigateur.
+```javascript
+// Modification du style
+element.style.color = 'red';
+element.style.fontSize = '20px';
+
+// Gestion des classes
+element.classList.add('nouvelleClasse');
+element.classList.remove('ancienneClasse');
+element.classList.toggle('classeToggle');
+```
+
+### Événements :
+
+En JavaScript, nous pouvons attacher des fonctions aux événements sur les éléments DOM.
+
+#### Ajout d'événements :
+
+- `addEventListener()`: Définit une fonction à exécuter lorsqu'un événement spécifié se produit.
+
+Exemple :
+
+```javascript
+element.addEventListener('click', () => {
+    // Code à exécuter lors du clic sur l'élément
+});
+```
+
+### Fonctions traditionnelles vs Fonctions fléchées :
+
+Nous avons le choix entre des fonctions traditionnelles et des fonctions fléchées pour définir des comportements.
+
+#### Fonctions traditionnelles :
+
+```javascript
+element.addEventListener('click', function() {
+    // Code à exécuter
+});
+```
+
+#### Fonctions fléchées :
+
+```javascript
+element.addEventListener('click', () => {
+    // Code à exécuter
+});
+```
+
+## Bonnes pratiques :
+
+- Utilisez des sélecteurs spécifiques pour éviter les recherches coûteuses.
+- Stockez les sélections DOM dans des variables pour une utilisation répétée.
+- Séparez la structure HTML, le style CSS et le comportement JavaScript.
+- Utilisez des classes CSS pour la manipulation des styles plutôt que de les modifier directement.
+
+## Le BOM (Browser Object Model) :
+
+Le BOM est une interface pour interagir avec le navigateur web. Il fournit des objets tels que `window`, `document`, `navigator`, etc.
+
+### Objets principaux du BOM :
+
+- `window`: Représente la fenêtre du navigateur.
+- `document`: Représente le document chargé dans la fenêtre du navigateur.
+- `navigator`: Fournit des informations sur le navigateur de l'utilisateur.
+- `location`: Fournit des informations sur l'URL du document en cours.
+
+Exemple :
+
+```javascript
+// Ouvrir une nouvelle fenêtre
+window.open('https://example.com');
+
+// Rediriger vers une nouvelle URL
+window.location.href = 'https://example.com';
+
+// Afficher des informations sur le navigateur
+console.log(navigator.userAgent);
+
+// Obtenir l'URL du document
+console.log(location.href);
+```
