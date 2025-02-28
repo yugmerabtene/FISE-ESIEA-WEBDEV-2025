@@ -29,7 +29,6 @@ Le projet consiste à développer un système de réservation en ligne avec un c
 
 2. **Gestion des Rendez-vous** :
    - **Prise de rendez-vous** : (2 points)  
-     - Calendrier interactif pour la sélection des dates et heures.
      - Vérification de la disponibilité des créneaux horaires.
      - Enregistrement du rendez-vous si le créneau est disponible.
    - **Affichage des rendez-vous** : (2 points)  
