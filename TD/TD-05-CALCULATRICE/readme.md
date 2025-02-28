@@ -12,7 +12,7 @@ Vous devez créer une calculatrice numérique simple avec une interface utilisat
   - Assurer une mise en page responsive.
 - **Contraintes :**
   - Séparer le code en trois fichiers : HTML, CSS, et JavaScript.
-  - Ne pas utiliser `console.log` pour le débogage ou l’affichage.
+  - Ne pas utiliser `console.log` pour l’affichage.
 
 ---
 
