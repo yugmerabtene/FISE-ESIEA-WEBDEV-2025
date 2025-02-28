@@ -22,7 +22,7 @@ Le projet consiste à développer un système de réservation en ligne avec un c
      - Redirection vers le profil après connexion réussie.
    - **Modification des informations personnelles** :  (2 points)
      - Possibilité de modifier le nom, prénom, date de naissance, adresse postale, numéro de téléphone, et email.
-     - Vérification de l'unicité de l'email lors de la modification.
+       
    - **Suppression du compte** :  (2 points)
      - Possibilité de supprimer le compte.
      - Suppression de toutes les données associées en base de données.
@@ -43,9 +43,8 @@ Le projet consiste à développer un système de réservation en ligne avec un c
      - Ajout de tokens CSRF pour sécuriser les formulaires.
    - **Hachage des mots de passe** :  (1 points)
      - Utilisation de `password_hash()` pour hasher les mots de passe avant de les stocker.
-   - **Vérification de l'unicité de l'email** :  (1 points)
-     - Vérification de l'unicité de l'email lors de l'inscription et de la modification du profil.
-   - **Protection contre les attaques XSS et SQL Injection** : (1 points)
+       
+   - **Protection contre les attaques XSS et SQL Injection** : (2 points)
 
 4. **Interface Utilisateur** :
    - **Calendrier interactif** :  (1 points)
