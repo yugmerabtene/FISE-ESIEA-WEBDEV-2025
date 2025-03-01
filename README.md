@@ -139,7 +139,8 @@
 - Concepts de base de la POO (classes, objets, héritage, etc.)  
 - Encapsulation, abstraction, polymorphisme  
 - Utilisation de la POO pour structurer des projets PHP  
-- Design patterns courants  
+- Design patterns courants
+- Intégration d'api du gouvernement type BAN...
 
 ---
 
@@ -155,7 +156,8 @@
   - Intégration avec des projets full-stack  
 - **Java Spring** :  
   - Backend avec Java Spring  
-
+- **Python fastAPI**
+  - Développement d'api avec Python 
 ---
 
 ### **Chapitre 19 : Déploiement et monitoring**  
