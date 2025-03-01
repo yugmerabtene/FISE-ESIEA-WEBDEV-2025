@@ -5,3 +5,4 @@
 4. RGPD
 5. web rtc
 6. Preparer le projet de fin de cours (portoflolio avec plusieurs projet fini, en ligne, testable, et versionné, 1 projet = 1point, portoflio = 1 point)
+7. code refactoring
