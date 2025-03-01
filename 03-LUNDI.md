@@ -8,5 +8,9 @@
 7. code refactoring : https://refactoring.guru/fr/design-patterns/abstract-factory
 8. CRUD
 9. securité des application (CSRF TOKEN, XXS, INJECTION SQL)
-10. .env importance / .git ignore 
+10. .env importance / .git ignore
+11. eletron desktop crossplateforme
+12. react js
+13. react native
+
 
