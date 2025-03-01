@@ -1,0 +1,6 @@
+0. Wordpress
+1- Webhosting FTP etc..
+2. SSL certificat
+3. Redirection de sous domaine
+4. RGPD
+5. Preparer le projet de fin de cours (portoflolio avec plusieurs projet fini, en ligne, testable, et versionné, 1 projet = 1point, portoflio = 1 point)
