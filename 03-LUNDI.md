@@ -8,5 +8,5 @@
 7. code refactoring : https://refactoring.guru/fr/design-patterns/abstract-factory
 8. CRUD
 9. securité des application (CSRF TOKEN, XXS, INJECTION SQL)
-10. .env importance
+10. .env importance / .git ignore 
 
