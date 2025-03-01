@@ -121,7 +121,7 @@
 
 ### **Chapitre 15 : JavaScript**  
 - Introduction à JavaScript et son rôle dans le développement web  
-- Manipulation du DOM  
+- Manipulation du DOM  / BOM
 - Événements et interactions utilisateur  
 - AJAX et communication asynchrone  
 
