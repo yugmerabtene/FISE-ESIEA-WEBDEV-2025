@@ -21,7 +21,7 @@ Développer un système de gestion d’utilisateurs permettant :
 #### **Technologies**
 - **Backend** : PHP (MVC), MySQL.
 - **Frontend** : HTML, CSS, JavaScript (fetch pour l’API BAN).
-- **API externe** : BAN (https://api-adresse.data.gouv.fr).
+- **API externe** : BAN ([https://api-adresse.data.gouv.f](https://api.gouv.fr/les-api/base-adresse-nationale)r).
 
 ---
 
