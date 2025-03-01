@@ -7,3 +7,5 @@
 6. Preparer le projet de fin de cours (portoflolio avec plusieurs projet fini, en ligne, testable, et versionné, 1 projet = 1point, portoflio = 1 point)
 7. code refactoring : https://refactoring.guru/fr/design-patterns/abstract-factory
 8. CRUD
+9. securité des application (CSRF TOKEN, XXS, INJECTION SQL)
+
