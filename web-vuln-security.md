@@ -211,6 +211,7 @@ Le **MITRE ATT&CK** est une **base de connaissances** des tactiques des attaquan
 3️⃣ **Analyser les résultats** et corriger les vulnérabilités détectées  
 
 📖 **Plus d’infos sur ZAP** : [https://www.zaproxy.org/](https://www.zaproxy.org/)
+**Tuto pour realiser une attaque de type injection SQL avec zap : https://asafsahar25.medium.com/testing-for-sql-injection-vulnerabilities-using-owasp-zap-62488b5805f0**
 
 ---
 
