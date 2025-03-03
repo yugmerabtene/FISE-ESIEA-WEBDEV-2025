@@ -160,7 +160,7 @@
   - Développement d'api avec Python 
 ---
 
-### **Chapitre 19 : Déploiement et monitoring**  
+### **Chapitre 19 : Déploiement et conteneurisation**  
 - Déploiement d'applications sur des serveurs distants  
 - Utilisation de conteneurs (Docker). 
 ---
