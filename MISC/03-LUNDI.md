@@ -19,6 +19,7 @@
    - CRUD (Create, Read, Update, Delete)  
    - Refactoring du code avec des Design Patterns  
      - Ex : [Abstract Factory](https://refactoring.guru/fr/design-patterns/abstract-factory)  
+     - Singleton
 
 ### **5. Projet de Fin de Cours (Portfolio)**  
    - Création d’un portfolio en ligne  
