@@ -200,3 +200,8 @@ app = FastAPI()
 def read_items(token: str = Depends(oauth2_scheme)):
     return {"token": token}
 ```
+
+RESSOURCES : 
+
+https://www.youtube.com/watch?v=aSdVU9-SxH4  
+https://www.youtube.com/watch?v=lWsGhG6N_1E
