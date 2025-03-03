@@ -25,3 +25,7 @@
    - Chaque projet terminé et fonctionnel rapporte 1 point  
    - Le portfolio final rapporte également 1 point  
    - Hébergement et mise en ligne des projets avec versioning  
+### **6. Architecture applicative**
+  - MVC 
+  - MICROSERVICE
+  - SOA
