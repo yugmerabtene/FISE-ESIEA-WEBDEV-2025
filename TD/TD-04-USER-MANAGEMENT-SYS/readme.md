@@ -49,7 +49,7 @@ Le frontend sera en **HTML/CSS**, et le backend en **PHP procédural**. Des mesu
     /functions
         getPDO.php
         createUser.php
-        login.php
+        checkUser.php
         getUserInfo.php
         logout.php
     index.php
