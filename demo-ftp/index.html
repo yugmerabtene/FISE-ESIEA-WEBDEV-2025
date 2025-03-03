@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PiewPiew - Site Web de Chats</title>
+    <style>
+        /* Styles généraux */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            animation: logoAnimation 2s infinite alternate;
+        }
+        
+        @keyframes logoAnimation {
+            0% {
+                transform: rotate(0deg) scale(1);
+            }
+            50% {
+                transform: rotate(5deg) scale(1.1);
+            }
+            100% {
+                transform: rotate(-5deg) scale(1);
+            }
+        }
+        
+        .menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .menu li {
+            margin-left: 20px;
+            position: relative;
+        }
+        
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .cat-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 5px;
+            transition: transform 0.3s ease;
+        }
+        
+        .menu a:hover .cat-icon {
+            animation: bounce 0.6s infinite alternate;
+        }
+        
+        @keyframes bounce {
+            from {
+                transform: translateY(0) rotate(0deg);
+            }
+            to {
+                transform: translateY(-5px) rotate(10deg);
+            }
+        }
+        
+        .hero {
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #666;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cat-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .cat-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .content {
+            padding: 40px 0;
+            position: relative;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #333;
+            border-bottom: 3px solid #ff6b6b;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+        
+        .section p {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+        
+        /* Hamburger menu pour mobiles */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        
+        /* Chat Mario Style */
+        .mario-cat-container {
+            position: relative;
+            height: 100px;
+            width: 100%;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+        
+        .mario-cat {
+            position: absolute;
+            left: -50px;
+            bottom: 0;
+            width: 50px;
+            height: 50px;
+            z-index: 10;
+            cursor: pointer;
+        }
+        
+        .mario-cat-body {
+            width: 100%;
+            height: 100%;
+            background-color: #f27935;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            position: relative;
+        }
+        
+        .mario-cat-ear {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: #f27935;
+            border-radius: 50%;
+        }
+        
+        .mario-cat-ear.left {
+            top: -5px;
+            left: 5px;
+        }
+        
+        .mario-cat-ear.right {
+            top: -5px;
+            right: 5px;
+        }
+        
+        .mario-cat-face {
+            position: absolute;
+            width: 60%;
+            height: 40%;
+            background-color: #fff;
+            border-radius: 40% 40% 60% 60%;
+            bottom: 10%;
+            left: 20%;
+        }
+        
+        .mario-cat-eye {
+            position: absolute;
+            width: 8px;
+            height: 10px;
+            background-color: #333;
+            border-radius: 50%;
+            top: 30%;
+        }
+        
+        .mario-cat-eye.left {
+            left: 22%;
+        }
+        
+        .mario-cat-eye.right {
+            right: 22%;
+        }
+        
+        .mario-cat-tail {
+            position: absolute;
+            width: 15px;
+            height: 5px;
+            background-color: #f27935;
+            right: -10px;
+            top: 40%;
+            border-radius: 0 5px 5px 0;
+            transform-origin: left center;
+            animation: tailWag 0.5s infinite alternate;
+        }
+        
+        .mario-cat-leg {
+            position: absolute;
+            width: 10px;
+            height: 12px;
+            background-color: #f27935;
+            border-radius: 5px;
+            bottom: -5px;
+            transition: transform 0.2s;
+        }
+        
+        .mario-cat-leg.left {
+            left: 10px;
+        }
+        
+        .mario-cat-leg.right {
+            right: 10px;
+        }
+        
+        @keyframes run {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes tailWag {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(20deg);
+            }
+        }
+        
+        @keyframes walking {
+            0% {
+                transform: translateY(0);
+            }
+            25% {
+                transform: translateY(-2px) rotate(15deg);
+            }
+            50% {
+                transform: translateY(0);
+            }
+            75% {
+                transform: translateY(-2px) rotate(-15deg);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes jump {
+            0% {
+                bottom: 0;
+                transform: scale(1);
+            }
+            50% {
+                bottom: 50px;
+                transform: scale(0.9) rotate(5deg);
+            }
+            100% {
+                bottom: 0;
+                transform: scale(1);
+            }
+        }
+        
+        .cat-controls {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .cat-button {
+            padding: 8px 15px;
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .cat-button:hover {
+            background-color: #ff4f4f;
+        }
+        
+        /* Styles pour le chat flottant */
+        .floating-cat {
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            z-index: 1000;
+            pointer-events: none;
+            transition: top 0.5s, left 0.5s;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .menu {
+                position: fixed;
+                top: 60px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 60px);
+                background-color: #333;
+                flex-direction: column;
+                transition: left 0.3s ease;
+                z-index: 99;
+            }
+            
+            .menu.active {
+                left: 0;
+            }
+            
+            .menu li {
+                margin: 0;
+                padding: 15px;
+                text-align: center;
+                border-bottom: 1px solid #444;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .cat-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22C17.53,22 22,17.53 22,12C22,6.47 17.53,2 12,2ZM16.5,16.5C14.8,18.2 13,18 12,18C11,18 9.2,18.2 7.5,16.5C6.5,15.5 6,14.5 6,14.5C6,14.5 9,13.5 12,13.5C15,13.5 18,14.5 18,14.5C18,14.5 17.5,15.5 16.5,16.5ZM8.5,11C7.67,11 7,10.33 7,9.5C7,8.67 7.67,8 8.5,8C9.33,8 10,8.67 10,9.5C10,10.33 9.33,11 8.5,11ZM15.5,11C14.67,11 14,10.33 14,9.5C14,8.67 14.67,8 15.5,8C16.33,8 17,8.67 17,9.5C17,10.33 16.33,11 15.5,11Z" fill="white"/>
+                    </svg>
+                    PiewPiew
+                </div>
+                <div class="menu-toggle">☰</div>
+                <ul class="menu">
+                    <li><a href="#accueil">
+                        <svg class="cat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22C17.53,22 22,17.53 22,12C22,6.47 17.53,2 12,2ZM16.5,16.5C14.8,18.2 13,18 12,18C11,18 9.2,18.2 7.5,16.5C6.5,15.5 6,14.5 6,14.5C6,14.5 9,13.5 12,13.5C15,13.5 18,14.5 18,14.5C18,14.5 17.5,15.5 16.5,16.5ZM8.5,11C7.67,11 7,10.33 7,9.5C7,8.67 7.67,8 8.5,8C9.33,8 10,8.67 10,9.5C10,10.33 9.33,11 8.5,11ZM15.5,11C14.67,11 14,10.33 14,9.5C14,8.67 14.67,8 15.5,8C16.33,8 17,8.67 17,9.5C17,10.33 16.33,11 15.5,11Z" fill="white"/>
+                        </svg>
+                        Accueil
+                    </a></li>
+                    <li><a href="#chats">
+                        <svg class="cat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12,8L10.67,8.09C9.81,7.07 7.4,4.5 5,4.5C5,4.5 3.03,7.46 4.96,11.41C4.41,12.24 4.07,12.67 4,15C4,17.21 4.5,19.6 6.04,21.79C6.68,22.24 7.5,22.26 8.12,21.79C9.42,20.9 10.79,20.09 12,20.09C13.21,20.09 14.58,20.9 15.88,21.79C16.5,22.26 17.32,22.24 17.96,21.79C19.5,19.6 20,17.21 20,15C20,12.67 19.66,12.24 19.11,11.41C21.04,7.46 19.07,4.5 19.07,4.5C16.67,4.5 14.26,7.07 13.4,8.09L12,8Z" fill="white"/>
+                        </svg>
+                        Chats
+                    </a></li>
+                    <li><a href="#photos">
+                        <svg class="cat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12,3C9,3 4,5 4,9C4,11 4,14 12,21C20,14 20,11 20,9C20,5 15,3 12,3ZM12,7.5C13.38,7.5 14.5,8.62 14.5,10C14.5,11.38 13.38,12.5 12,12.5C10.62,12.5 9.5,11.38 9.5,10C9.5,8.62 10.62,7.5 12,7.5Z" fill="white"/>
+                        </svg>
+                        Photos
+                    </a></li>
+                    <li><a href="#contact">
+                        <svg class="cat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20,4H4C2.9,4 2,4.9 2,6V18C2,19.1 2.9,20 4,20H20C21.1,20 22,19.1 22,18V6C22,4.9 21.1,4 20,4ZM20,18H4V8L12,13L20,8V18ZM12,11L4,6H20L12,11Z" fill="white"/>
+                        </svg>
+                        Contact
+                    </a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="accueil" class="hero">
+        <div class="container">
+            <h1>Bienvenue sur PiewPiew</h1>
+            <p>Découvrez l'univers fascinant des chats à travers notre site. Des informations, des photos et bien plus encore!</p>
+            <img src="/api/placeholder/800/600" alt="Image placeholder" class="cat-image">
+            
+            <div class="mario-cat-container">
+                <div id="mario-cat" class="mario-cat">
+                    <div class="mario-cat-body">
+                        <div class="mario-cat-ear left"></div>
+                        <div class="mario-cat-ear right"></div>
+                        <div class="mario-cat-face">
+                            <div class="mario-cat-eye left"></div>
+                            <div class="mario-cat-eye right"></div>
+                        </div>
+                        <div class="mario-cat-tail"></div>
+                        <div class="mario-cat-leg left"></div>
+                        <div class="mario-cat-leg right"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cat-controls">
+                <button id="btn-walk" class="cat-button">Marcher</button>
+                <button id="btn-jump" class="cat-button">Sauter</button>
+                <button id="btn-follow" class="cat-button">Suivre la souris</button>
+                <button id="btn-stop" class="cat-button">Arrêter</button>
+            </div>
+        </div>
+    </section>
+
+    <div id="content" class="content container">
+        <section id="chats" class="section">
+            <h2>Nos Chats</h2>
+            <p>Les chats sont des animaux fascinants et mystérieux. Ils sont connus pour leur indépendance, leur agilité et leur grande capacité d'adaptation. Les chats domestiques sont des compagnons fidèles pour des millions de personnes à travers le monde.</p>
+            <p>Les chats ont un excellent sens de l'équilibre et peuvent tomber d'une hauteur relativement élevée sans se blesser. Leur corps souple et leurs réflexes rapides leur permettent de chasser efficacement et d'éviter le danger.</p>
+        </section>
+
+        <section id="photos" class="section">
+            <h2>Galerie Photos</h2>
+            <p>Admirez nos magnifiques photos de chats. Chaque image capture un moment unique dans la vie de ces animaux extraordinaires.</p>
+        </section>
+
+        <section id="contact" class="section">
+            <h2>Contactez-nous</h2>
+            <p>Vous avez des questions ou des suggestions? N'hésitez pas à nous contacter!</p>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 PiewPiew - Tous droits réservés</p>
+        </div>
+    </footer>
+
+    <!-- Cat that can follow the cursor -->
+    <div id="floating-cat" class="floating-cat" style="display: none;">
+        <div class="mario-cat-body">
+            <div class="mario-cat-ear left"></div>
+            <div class="mario-cat-ear right"></div>
+            <div class="mario-cat-face">
+                <div class="mario-cat-eye left"></div>
+                <div class="mario-cat-eye right"></div>
+            </div>
+            <div class="mario-cat-tail"></div>
+            <div class="mario-cat-leg left"></div>
+            <div class="mario-cat-leg right"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const menu = document.querySelector('.menu');
+            const marioCat = document.getElementById('mario-cat');
+            const floatingCat = document.getElementById('floating-cat');
+            const btnWalk = document.getElementById('btn-walk');
+            const btnJump = document.getElementById('btn-jump');
+            const btnFollow = document.getElementById('btn-follow');
+            const btnStop = document.getElementById('btn-stop');
+            const leftLeg = marioCat.querySelector('.mario-cat-leg.left');
+            const rightLeg = marioCat.querySelector('.mario-cat-leg.right');
+            const content = document.getElementById('content');
+            
+            // État du chat
+            let catState = {
+                position: -50,
+                direction: 1,
+                bottom: 0,
+                isJumping: false,
+                isWalking: false,
+                isFollowing: false,
+                jumpObstacles: false,
+                animationId: null
+            };
+            
+            // Menu responsive
+            menuToggle.addEventListener('click', function() {
+                menu.classList.toggle('active');
+            });
+            
+            // Animation des icônes de chat
+            const catIcons = document.querySelectorAll('.cat-icon');
+            catIcons.forEach(icon => {
+                setInterval(() => {
+                    if (Math.random() > 0.7) {
+                        icon.style.animation = 'bounce 0.6s';
+                        setTimeout(() => {
+                            icon.style.animation = '';
+                        }, 600);
+                    }
+                }, 3000);
+            });
+            
+            // Fonction pour faire marcher le chat
+            function startWalking() {
+                catState.isWalking = true;
+                catState.isJumping = false;
+                catState.isFollowing = false;
+                floatingCat.style.display = 'none';
+                
+                // Arrêter l'animation précédente si elle existe
+                if (catState.animationId) {
+                    cancelAnimationFrame(catState.animationId);
+                }
+                
+                // Animation des jambes pendant la marche
+                leftLeg.style.animation = 'walking 0.4s infinite';
+                rightLeg.style.animation = 'walking 0.4s infinite';
+                rightLeg.style.animationDelay = '0.2s';
+                
+                function walk() {
+                    // Mise à jour de la position
+                    catState.position += 3 * catState.direction;
+                    
+                    const containerWidth = document.querySelector('.mario-cat-container').offsetWidth;
+                    
+                    // Changement de direction
+                    if (catState.position > containerWidth) {
+                        catState.direction = -1;
+                        marioCat.style.transform = 'scaleX(-1)';
+                    } else if (catState.position < -50) {
+                        catState.direction = 1;
+                        marioCat.style.transform = 'scaleX(1)';
+                    }
+                    
+                    // Application de la nouvelle position
+                    marioCat.style.left = catState.position + 'px';
+                    marioCat.style.bottom = catState.bottom + 'px';
+                    
+                    if (catState.isWalking) {
+                        catState.animationId = requestAnimationFrame(walk);
+                    }
+                }
+                
+                walk();
+            }
+            
+            // Fonction pour faire sauter le chat
+            function jumpCat() {
+                if (catState.isJumping) return;
+                
+                catState.isJumping = true;
+                const originalBottom = catState.bottom;
+                
+                // Animation de saut
+                marioCat.style.animation = 'jump 0.5s ease-in-out';
+                
+                setTimeout(() => {
+                    marioCat.style.animation = '';
+                    catState.isJumping = false;
+                    catState.bottom = originalBottom;
+                    marioCat.style.bottom = catState.bottom + 'px';
+                }, 500);
+            }
+            
+            // Fonction pour arrêter toutes les animations
+            function stopCat() {
+                catState.isWalking = false;
+                catState.isJumping = false;
+                catState.isFollowing = false;
+                
+                if (catState.animationId) {
+                    cancelAnimationFrame(catState.animationId);
+                    catState.animationId = null;
+                }
+                
+                leftLeg.style.animation = '';
+                rightLeg.style.animation = '';
+                marioCat.style.animation = '';
+                floatingCat.style.display = 'none';
+            }
+            
+            // Fonction pour faire suivre la souris
+            function followMouse() {
+                stopCat();
+                catState.isFollowing = true;
+                floatingCat.style.display = 'block';
+                
+                // Cloner le style du cat original
+                const computedStyle = window.getComputedStyle(marioCat.querySelector('.mario-cat-body'));
+                const floatingCatBody = floatingCat.querySelector('.mario-cat-body');
+                
+                // Suivre la souris
+                document.addEventListener('mousemove', moveFloatingCat);
+            }
+            
+            function moveFloatingCat(e) {
+                if (!catState.isFollowing) return;
+                
+                floatingCat.style.left = (e.clientX - 25) + 'px';
+                floatingCat.style.top = (e.clientY - 25) + 'px';
+                
+                // Faire bouger les jambes lorsque la souris se déplace
+                const leftLegFloat = floatingCat.querySelector('.mario-cat-leg.left');
+                const rightLegFloat = floatingCat.querySelector('.mario-cat-leg.right');
+                
+                leftLegFloat.style.animation = 'walking 0.4s infinite';
+                rightLegFloat.style.animation = 'walking 0.4s infinite';
+                rightLegFloat.style.animationDelay = '0.2s';
+            }
+            
+            // Événements des boutons
+            btnWalk.addEventListener('click', startWalking);
+            btnJump.addEventListener('click', jumpCat);
+            btnFollow.addEventListener('click', followMouse);
+            btnStop.addEventListener('click', stopCat);
+            
+            // Permettre au chat de sauter en cliquant dessus
+            marioCat.addEventListener('click', jumpCat);
+            
+            // Arrêter le suivi de souris quand on clique n'importe où
+            document.addEventListener('click', function(e) {
+                if (catState.isFollowing && e.target !== btnFollow) {
+                    document.removeEventListener('mousemove', moveFloatingCat);
+                }
+            });
+            
+            // Faire marcher le chat à travers la page (en dehors de son conteneur)
+            document.addEventListener('keydown', function(e) {
+                // Touches fléchées pour contrôler le chat
+                if (e.key === 'ArrowRight') {
+                    catState.direction = 1;
+                    marioCat.style.transform = 'scaleX(1)';
+                    if (!catState.isWalking) startWalking();
+                } else if (e.key === 'ArrowLeft') {
+                    catState.direction = -1;
+                    marioCat.style.transform = 'scaleX(-1)';
+                    if (!catState.isWalking) startWalking();
+                } else if (e.key === 'ArrowUp' || e.key === ' ') {
+                    jumpCat();
+                } else if (e.key === 'Escape') {
+                    stopCat();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
