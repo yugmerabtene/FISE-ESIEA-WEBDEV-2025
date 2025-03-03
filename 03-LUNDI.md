@@ -1,16 +1,27 @@
-0. Wordpress
-1- Webhosting FTP etc..
-2. SSL certificat
-3. Redirection de sous domaine
-4. RGPD
-5. web rtc
-6. Preparer le projet de fin de cours (portoflolio avec plusieurs projet fini, en ligne, testable, et versionné, 1 projet = 1point, portoflio = 1 point)
-7. code refactoring : https://refactoring.guru/fr/design-patterns/abstract-factory
-8. CRUD
-9. securité des application (CSRF TOKEN, XXS, INJECTION SQL)
-10. .env importance / .git ignore
-11. eletron desktop crossplateforme
-12. react js
-13. react native
+### **1. Hébergement Web et Configuration**  
+   - WordPress  
+   - Webhosting, FTP et gestion de serveurs  
+   - Certificat SSL et sécurité HTTPS  
+   - Redirection de sous-domaine  
+   - Respect du RGPD  
 
+### **2. Développement Web et Applications**  
+   - WebRTC (communication en temps réel)  
+   - Développement d’applications desktop cross-plateforme avec Electron  
+   - React.js (applications web dynamiques)  
+   - React Native (applications mobiles)  
 
+### **3. Sécurité des Applications**  
+   - Sécurisation des formulaires : CSRF Token, XSS, injections SQL  
+   - Importance des fichiers `.env` et du `.gitignore`  
+
+### **4. Développement et Optimisation du Code**  
+   - CRUD (Create, Read, Update, Delete)  
+   - Refactoring du code avec des Design Patterns  
+     - Ex : [Abstract Factory](https://refactoring.guru/fr/design-patterns/abstract-factory)  
+
+### **5. Projet de Fin de Cours (Portfolio)**  
+   - Création d’un portfolio en ligne  
+   - Chaque projet terminé et fonctionnel rapporte 1 point  
+   - Le portfolio final rapporte également 1 point  
+   - Hébergement et mise en ligne des projets avec versioning  
