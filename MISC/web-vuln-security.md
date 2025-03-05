@@ -9,7 +9,7 @@ L’injection SQL (SQLi) permet à un attaquant d’exécuter des requêtes SQL 
 Prenons un script PHP vulnérable :
 ```php
 
-```
+
 <?php
 try {
     $pdo = new PDO("mysql:host=localhost;dbname=testdb", "root", "", [
@@ -36,6 +36,7 @@ if (isset($_GET['id']) && ctype_digit($_GET['id'])) {
     echo "ID invalide.";
 }
 ?>
+```
 ---
 
 ## 🔍 Tester la vulnérabilité
