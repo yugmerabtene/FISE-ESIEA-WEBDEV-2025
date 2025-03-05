@@ -1,5 +1,3 @@
-Bien sûr ! Voici un cours complet sur **FastAPI** en Python. Ce framework moderne et performant permet de créer des API web rapidement avec une bonne prise en charge des types et des validations automatiques. Il repose sur **Starlette** pour le côté serveur web et **Pydantic** pour la validation des données.
-
 ### Table des matières
 1. **Introduction à FastAPI**
 2. **Installation et configuration**
