@@ -8,7 +8,37 @@ L’injection SQL (SQLi) permet à un attaquant d’exécuter des requêtes SQL 
 ## 🕵️‍♂️ Exemple d’attaque SQLi
 Prenons un script PHP vulnérable :
 ```php
+<?php
+$pdo = new PDO("mysql:host=localhost;dbname=test_injection", "root", "");
 
+// Récupération d’un utilisateur sans protection
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $query = "SELECT * FROM users WHERE id = $id"; // ⚠️ Vulnérable !
+    $stmt = $pdo->query($query);
+    $user = $stmt->fetch();
+    print_r($user);
+}
+?>
+
+```
+---
+
+## 🔍 Tester la vulnérabilité
+Dans l’URL, entrez :
+```
+http://site.com/vulnerable.php?id=1 OR 1=1
+```
+Ce qui exécute :
+```sql
+SELECT * FROM users WHERE id = 1 OR 1=1;
+```
+Cela **affichera tous les utilisateurs** au lieu d’un seul.
+
+---
+
+## 🛡️ Protection avec `PDO` et requêtes préparées
+```php
 
 <?php
 try {
@@ -34,37 +64,6 @@ if (isset($_GET['id']) && ctype_digit($_GET['id'])) {
     }
 } else {
     echo "ID invalide.";
-}
-?>
-```
----
-
-## 🔍 Tester la vulnérabilité
-Dans l’URL, entrez :
-```
-http://site.com/vulnerable.php?id=1 OR 1=1
-```
-Ce qui exécute :
-```sql
-SELECT * FROM users WHERE id = 1 OR 1=1;
-```
-Cela **affichera tous les utilisateurs** au lieu d’un seul.
-
----
-
-## 🛡️ Protection avec `PDO` et requêtes préparées
-```php
-<?php
-$pdo = new PDO("mysql:host=localhost;dbname=testdb", "root", "");
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE id = :id");
-    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-    $stmt->execute();
-    $user = $stmt->fetch();
-    print_r($user);
 }
 ?>
 ```
