@@ -198,6 +198,76 @@ app = FastAPI()
 def read_items(token: str = Depends(oauth2_scheme)):
     return {"token": token}
 ```
+----
+CODE COMPLET
+
+-------
+
+```python
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+from fastapi.responses import JSONResponse
+
+app = FastAPI()
+
+# Stockage temporaire des items
+items_db = {}
+
+# Root endpoint
+@app.get("/")
+def read_root():
+    return {"message": "Hello, World!"}
+
+# Récupérer un item par son ID
+@app.get("/items/{item_id}")
+def read_item(item_id: int, q: str = None):
+    if item_id not in items_db:
+        raise HTTPException(status_code=404, detail="Item not found")
+    return {"item_id": item_id, "item": items_db[item_id], "q": q}
+
+# Modèle d'Item
+class Item(BaseModel):
+    name: str
+    description: str = None
+    price: float
+
+# Créer un item
+@app.post("/items/")
+def create_item(item_id: int, item: Item):
+    if item_id in items_db:
+        raise HTTPException(status_code=400, detail="Item ID already exists")
+    items_db[item_id] = item
+    return {"message": "Item created", "item": item}
+
+# Récupérer tous les items
+@app.get("/items/")
+def get_all_items():
+    return {"items": items_db}
+
+# Supprimer un item
+@app.delete("/items/{item_id}")
+def delete_item(item_id: int):
+    if item_id not in items_db:
+        raise HTTPException(status_code=404, detail="Item not found")
+    del items_db[item_id]
+    return {"message": "Item deleted"}
+
+# Mettre à jour un item
+@app.put("/items/{item_id}")
+def update_item(item_id: int, item: Item):
+    if item_id not in items_db:
+        raise HTTPException(status_code=404, detail="Item not found")
+    items_db[item_id] = item
+    return {"message": "Item updated", "item": item}
+
+# Réponse personnalisée
+@app.get("/custom-response")
+def custom_response():
+    return JSONResponse(content={"message": "Custom response!"}, status_code=200)
+
+```
+
+
 
 RESSOURCES : 
 
