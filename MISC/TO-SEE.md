@@ -30,3 +30,6 @@
   - MVC 
   - MICROSERVICE
   - SOA
+
+### Plateformes entrainement Dev
+- Leetcode
