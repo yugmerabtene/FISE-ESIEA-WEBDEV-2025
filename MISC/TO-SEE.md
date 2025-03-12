@@ -36,3 +36,8 @@ Lister les ORM et leur utilités
 
 ### Plateformes entrainement Dev
 - Leetcode
+
+### DERNIER JOUR 
+- Ban intégration
+- Java Spring
+
