@@ -233,7 +233,6 @@ class User {
 #### **4. Contrôleur d’authentification (controllers/AuthController.php)**
 ```php
 <?php
-session_start();
 require_once '../models/User.php';
 
 class AuthController {
@@ -244,15 +243,18 @@ class AuthController {
     }
 
     public function showRegister() {
+        if (!isset($_SESSION)) session_start();
         $csrf_token = bin2hex(random_bytes(32));
         $_SESSION['csrf_token'] = $csrf_token;
-        return '../views/register.php';
+        return ['view' => '../views/register.php', 'data' => ['csrf_token' => $csrf_token]];
     }
 
     public function register($data) {
-        if (!isset($_SESSION['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        if (!isset($_SESSION)) session_start();
+        if (!isset($_SESSION['csrf_token']) || $data['csrf_token'] !== $_SESSION['csrf_token']) {
             throw new Exception("Erreur CSRF : Token invalide.");
         }
+        unset($_SESSION['csrf_token']);
         if ($data['mot_de_passe'] !== $data['mot_de_passe_confirm']) {
             throw new Exception("Les mots de passe ne correspondent pas.");
         }
@@ -261,10 +263,12 @@ class AuthController {
     }
 
     public function showLogin() {
+        if (!isset($_SESSION)) session_start();
         return '../views/login.php';
     }
 
     public function login($data) {
+        if (!isset($_SESSION)) session_start();
         $user = $this->user->login($data['email'], $data['mot_de_passe']);
         $_SESSION['user_id'] = $user['id'];
         return '/profile';
@@ -275,7 +279,6 @@ class AuthController {
 #### **5. Contrôleur de profil (controllers/ProfileController.php)**
 ```php
 <?php
-session_start();
 require_once '../models/User.php';
 
 class ProfileController {
@@ -286,6 +289,7 @@ class ProfileController {
     }
 
     public function showProfile() {
+        if (!isset($_SESSION)) session_start();
         if (!isset($_SESSION['user_id'])) {
             throw new Exception("Vous devez être connecté pour accéder à cette page.");
         }
@@ -294,6 +298,7 @@ class ProfileController {
     }
 
     public function updateProfile($data) {
+        if (!isset($_SESSION)) session_start();
         if (!isset($_SESSION['user_id'])) {
             throw new Exception("Vous devez être connecté pour modifier votre profil.");
         }
@@ -452,8 +457,13 @@ try {
             header("Location: $nextPath");
             exit;
         } else {
-            $view = $controller->showRegister();
-            require $view;
+            $result = $controller->showRegister();
+            if (is_array($result)) {
+                extract($result['data']);
+                require $result['view'];
+            } else {
+                require $result;
+            }
         }
     } elseif ($path === '/login') {
         $controller = new AuthController();

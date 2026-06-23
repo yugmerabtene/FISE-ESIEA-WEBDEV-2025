@@ -145,25 +145,32 @@ button:hover {
 ```javascript
 let display = document.getElementById('display');
 let currentInput = '0';
+let lastCharIsOperator = false;
 
 function appendToDisplay(value) {
+    const operators = ['+', '-', '*', '/'];
+    if (operators.includes(value) && lastCharIsOperator) return;
     if (currentInput === '0' && value !== '.') {
         currentInput = value;
     } else {
         currentInput += value;
     }
+    lastCharIsOperator = operators.includes(value);
     display.textContent = currentInput;
 }
 
 function clearDisplay() {
     currentInput = '0';
+    lastCharIsOperator = false;
     display.textContent = currentInput;
 }
 
 function calculate() {
     try {
-        currentInput = eval(currentInput.replace('×', '*').replace('÷', '/')).toString();
+        const result = Function('"use strict"; return (' + currentInput + ')')();
+        currentInput = Number.isFinite(result) ? result.toString() : 'Erreur';
         display.textContent = currentInput;
+        lastCharIsOperator = false;
     } catch (error) {
         currentInput = 'Erreur';
         display.textContent = currentInput;

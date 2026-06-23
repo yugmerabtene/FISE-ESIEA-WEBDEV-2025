@@ -73,7 +73,7 @@
 
 ---
 
-### **Chapitre 09 : Règles de nommage et bonnes pratiques**  
+### **Chapitre 9 : Règles de nommage et bonnes pratiques**  
 - Importance des conventions de nommage  
 - Règles pour les fichiers, variables, bases de données, etc.  
 - Bonnes pratiques pour la maintenance et la collaboration  
@@ -140,7 +140,7 @@
 - Encapsulation, abstraction, polymorphisme  
 - Utilisation de la POO pour structurer des projets PHP  
 - Design patterns courants
-- Intégration d'api du gouvernement type BAN...
+- Intégration d'API du gouvernement (type BAN).
 
 ---
 

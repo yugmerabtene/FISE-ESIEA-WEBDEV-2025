@@ -29,7 +29,7 @@ Bootstrap utilise un système de grille de 12 colonnes. Cela signifie que pour c
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grille Bootstrap</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <main class="container">
@@ -46,7 +46,7 @@ Bootstrap utilise un système de grille de 12 colonnes. Cela signifie que pour c
 
 
 **Explication :**
-- **s`container` :** Conteneur principal qui centre le contenu.
+- **`container` :** Conteneur principal qui centre le contenu.
 - **`row` :** Ligne qui contient des colonnes.
 - **`col-4` :** Chaque colonne prend 4 sur 12 parts de la ligne (donc 3 colonnes au total).
 
@@ -288,26 +288,24 @@ Les **modals** sont des fenêtres modales utilisées pour afficher du contenu de
 **Exemple d’un modal :**
 
 ```html
-<!-- Button to trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+<!-- Button to trigger modal (Bootstrap 5) -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
     Ouvrir le Modal
 </button>
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<!-- Modal (Bootstrap 5) -->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="myModalLabel">Titre du Modal</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 Ceci est le contenu de la fenêtre modale.
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
                 <button type="button" class="btn btn-primary">Sauvegarder les modifications</button>
             </div>
         </div>
@@ -317,7 +315,7 @@ Les **modals** sont des fenêtres modales utilisées pour afficher du contenu de
 
 **Explication :**
 - **`modal` :** Crée la fenêtre modale.
-- **`data-toggle="modal"` et `data-target="#myModal"` :** Lient le bouton à la modale.
+- **`data-bs-toggle="modal"` et `data-bs-target="#myModal"` :** Lient le bouton à la modale (Bootstrap 5 utilise le préfixe `bs-`).
 - **`fade` :** Ajoute un effet de transition au modal.
 
 ---

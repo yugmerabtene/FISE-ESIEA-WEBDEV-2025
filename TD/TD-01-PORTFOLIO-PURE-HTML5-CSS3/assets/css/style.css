@@ -1,4 +1,14 @@
-/*Normalizer*/
+/*
+ * FICHIER : TD/TD-01-PORTFOLIO-PURE-HTML5-CSS3/assets/css/style.css
+ * RÔLE    : Design sombre et moderne pour le portfolio de Mr Bean
+ * 
+ * Technologies : CSS3, Flexbox, Google Fonts (Poppins)
+ * Particularités : header fixe, effet de soulignement des liens,
+ *                  photo de profil ronde, responsive design.
+ */
+
+/* ========== NORMALISATEUR ========== */
+/* Réinitialise les marges/padding et définit la police par défaut */
 * {
     box-sizing: border-box;
     padding: 0;
@@ -7,29 +17,33 @@
     text-decoration: none;
 }
 
-
+/* ========== CORPS DE PAGE ========== */
 body {
-    
-    background: #222;
-    color: #e5e5e5;
+    background: #222;             /* Fond sombre */
+    color: #e5e5e5;              /* Texte gris clair */
+    padding-top: 80px;            /* Évite que le header fixe cache le contenu */
 }
 
+/* ========== HEADER FIXE ========== */
 header {
-    position: fixed;
-    width: 100%;    
-    background: rgba(34, 34, 34, 0.95);
-    
+    position: fixed;              /* Reste en haut même en scrollant */
+    top: 0;
+    width: 100%;
+    z-index: 1000;                /* Au-dessus de tout autre élément */
+    background: rgba(34, 34, 34, 0.95); /* Fond semi-transparent */
 }
 
+/* ========== BARRE DE NAVIGATION ========== */
 nav {
-    display: flex;
+    display: flex;                /* Logo à gauche, menu à droite */
     justify-content: space-between;
     align-items: center;
     padding: 1rem 5%;
-    max-width: 1400px;
-    margin: 0 auto;
+    max-width: 1400px;            /* Largeur maximale pour grands écrans */
+    margin: 0 auto;               /* Centré horizontalement */
 }
 
+/* Logo : icône + texte côte à côte */
 #logo {
     display: flex;
     align-items: center;
@@ -37,90 +51,98 @@ nav {
 }
 
 .logo-text {
-    font-size: 1.8vw;
+    font-size: 1.8vw;            /* Taille relative à la largeur d'écran */
     font-weight: bold;
-    color: #007ced;
+    color: #007ced;               /* Bleu vif (couleur d'accentuation) */
 }
 
 #logo i {
     font-size: 1.5vw;
     color: #007ced;
-    transition: transform 0.3s ease;
-    list-style: none;
+    transition: transform 0.3s ease; /* Animation au survol */
 }
 
 #logo:hover i {
-    transform: scale(1.2);
+    transform: scale(1.2);        /* Agrandit l'icône au survol */
 }
 
+/* Liste des liens de navigation */
 nav ul {
     display: flex;
     gap: 2rem;
     align-items: center;
 }
 
+/* Chaque lien de navigation */
 nav ul li a {
     color: #e5e5e5;
     font-weight: 500;
     padding: 0.5rem 1rem;
     border-radius: 20px;
     transition: all 0.3s ease;
-    position: relative;
+    position: relative;           /* Nécessaire pour le pseudo-élément ::after */
 }
-/*Underline effect*/
+
+/* Effet de soulignement animé (barre bleue sous le lien) */
 nav ul li a::after {
     content: '';
     position: absolute;
     bottom: -5px;
     left: 50%;
     transform: translateX(-50%);
-    width: 0;
+    width: 0;                     /* Caché par défaut */
     height: 2px;
     background: #007ced;
     transition: width 0.3s ease;
 }
-/*Underline effect*/
+
+/* Au survol : la barre s'étend à 70% de la largeur du lien */
 nav ul li a:hover::after {
     width: 70%;
 }
-/*Underline effect*/
+
+/* Le texte du lien devient bleu au survol */
 nav ul li a:hover {
     color: #007ced;
 }
-nav ul li{
+
+/* Supprime les puces des éléments de liste */
+nav ul li {
     list-style: none;
 }
 
-/* Section principale */
+/* ========== SECTION HÉRO ========== */
 .hero-section {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    min-height: 95vh;
-    flex-direction: column;
+    min-height: 95vh;             /* Occupe presque toute la hauteur d'écran */
+    flex-direction: column;       /* Empile la photo puis le texte */
 }
 
+/* Photo de profil : format cercle avec bordure et ombre */
 .hero-pic {
     width: 300px;
     height: 300px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 15px solid #444;
+    border-radius: 50%;           /* Forme ronde */
+    overflow: hidden;             /* Cache les débordements de l'image */
+    border: 15px solid #444;      /* Bordure grise */
     box-shadow: 5px 7px 25px rgba(0, 0, 0, 0.5);
 }
 
 .hero-pic img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover;            /* Remplit le conteneur sans déformation */
     transition: 0.5s;
 }
 
 .hero-pic img:hover {
-    transform: scale(1.1);
+    transform: scale(1.1);        /* Zoom avant au survol */
 }
 
+/* Texte du héros : centré et limité en largeur */
 .hero-text {
     max-width: 500px;
     display: flex;
@@ -129,15 +151,20 @@ nav ul li{
     text-align: center;
 }
 
-h1 {
-    font-size: 14px;
+/* Sous-titre "Hi, I'm a software engineer" */
+.hero-subtitle {
+    font-size: 1rem;
+    color: #aaa;
+    margin-top: 1rem;
 }
 
+/* Titre principal "Mr Bean" en bleu */
 h2 {
     color: #007ced;
     font-size: 3rem;
 }
 
+/* ========== BOUTONS ========== */
 .btn-group {
     margin: 45px 0;
 }
@@ -148,14 +175,16 @@ h2 {
     background-color: #333;
     padding: 12px 25px;
     margin: 5px;
-    border-radius: 30px;
+    border-radius: 30px;          /* Boutons arrondis */
     box-shadow: 0 10px 10px -8px rgba(0, 0, 0, 0.78);
 }
 
+/* Bouton actif (Download CV) avec bordure bleue */
 .btn.active {
     border-color: #007ced;
 }
 
+/* ========== RÉSEAUX SOCIAUX ========== */
 .social a {
     margin: 0 10px;
     color: #e5e5e5;
@@ -164,33 +193,35 @@ h2 {
 }
 
 .social a:hover {
-    color: #007ced;
-    
+    color: #007ced;               /* Devient bleu au survol */
 }
-footer{
+
+/* ========== PIED DE PAGE ========== */
+footer {
     display: flex;
     justify-content: center;
 }
 
-/* Responsive */
+/* ========== RESPONSIVE (Écrans ≤ 768px) ========== */
 @media (max-width: 768px) {
     nav {
         padding: 1rem 20px;
         display: flex;
-        flex-direction: column;
+        flex-direction: column;    /* Menu en colonne sur mobile */
         font-size: 2.5vw;
     }
-
 
     nav ul {
         gap: 1rem;
         display: flex;
         flex-direction: column;
     }
-    li{
+
+    li {
         list-style: none;
     }
-    .logo-text{
-        font-size: 4vw;
+
+    .logo-text {
+        font-size: 4vw;           /* Texte plus lisible sur mobile */
     }
 }

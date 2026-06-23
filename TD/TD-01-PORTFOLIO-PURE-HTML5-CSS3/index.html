@@ -1,51 +1,81 @@
 <!DOCTYPE html>
+<!-- ============================================================
+     Portfolio - Mr Bean (TD-01 : HTML5 + CSS3 pur)
+     FISE ESIEA - Cours de Développement Web
+     Objectif : page portfolio one-page avec design sombre, 
+        photo de profil, navigation fluide et liens sociaux.
+     ============================================================ -->
 <html lang="fr">
 <head>
+    <!-- Métadonnées essentielles -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Jean Pierre</title>
+    <title>Portfolio - Mr Bean</title>
+
+    <!-- Google Fonts : Poppins (400 regular, 500 medium, 700 bold) utilisée dans le CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Notre feuille de style personnalisée (design sombre, flexbox, responsive) -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Font Awesome 6 pour les icônes des réseaux sociaux et du logo cœur -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 </head>
 <body>
+
+    <!-- ==================== BARRE DE NAVIGATION ==================== -->
+    <!-- Header fixe en haut (voir CSS : position: fixed; z-index: 1000) -->
     <header>
         <nav>
+            <!-- Logo : icône cœur + texte "Mr Bean" -->
             <div id="logo">
                 <i class="fa-solid fa-heart"></i>
                 <div class="logo-text">Mr Bean</div>
             </div>            
+            <!-- Liens de navigation avec ancres vers les sections de la page -->
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Portfolio</a></li>
-                <li><a href="#">Resume</a></li>                
-                <li><a href="#">Contact</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#resume">Resume</a></li>                
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
+
+    <!-- ==================== SECTION HÉRO ==================== -->
     <main>
-        <section class="hero-section">
-            <figure class="hero-pic">
-                <img src="assets/img/main_photo.jpg" alt="Photo de profil d'Jean Pierre">
-            </figure>
-            <article class="hero-text">
-                <h1>Hi, I'm a software engineer</h1>
+        <!-- La section #home est centrée verticalement (min-height: 95vh) -->
+        <section id="home" class="hero-section">
+            <!-- Photo de profil : format rond (border-radius: 50%) avec bordure -->
+            <div class="hero-pic">
+                <img src="assets/img/main_photo.jpg" alt="Photo de profil de Mr Bean">
+            </div>
+            <!-- Texte de présentation -->
+            <div class="hero-text">
+                <p class="hero-subtitle">Hi, I'm a software engineer</p>
                 <h2>Mr Bean</h2>
+                <!-- Texte de remplissage (Lorem Ipsum) - à personnaliser -->
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta delectus dolorum quibusdam maiores magni quod
                     rem.</p>
+                <!-- Boutons d'appel à l'action -->
                 <div class="btn-group">
                     <a href="#" class="btn active">Download CV</a>
                     <a href="#" class="btn">Contact</a>
                 </div>
+                <!-- Icônes des réseaux sociaux (Font Awesome) -->
                 <div class="social">
-                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#"><i class="fa-brands fa-dribbble"></i></a>
-                    <a href="#"><i class="fa-brands fa-pinterest"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="Dribbble"><i class="fa-brands fa-dribbble"></i></a>
+                    <a href="#" aria-label="Pinterest"><i class="fa-brands fa-pinterest"></i></a>
                 </div>
-            </article>
+            </div>
         </section>
     </main>
+
+    <!-- ==================== PIED DE PAGE ==================== -->
     <footer>
         <p>&copy; 2025 Mr Bean. Tous droits réservés.</p>
     </footer>

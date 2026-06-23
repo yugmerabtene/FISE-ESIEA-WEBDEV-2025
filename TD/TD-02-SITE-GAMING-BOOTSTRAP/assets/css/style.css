@@ -1,5 +1,17 @@
-/* Effet hover : agrandir l'image légèrement */
+/*
+ * FICHIER : TD/TD-02-SITE-GAMING-BOOTSTRAP/assets/css/style.css
+ * RÔLE    : Styles personnalisés pour le site Gaming (TD-02 Bootstrap)
+ * 
+ * Complète Bootstrap 5.3 avec un effet de zoom au survol des images.
+ * Le framework Bootstrap gère la grille, la navbar et les composants.
+ */
+
+/* Effet hover : agrandir l'image légèrement au passage de la souris */
+.img-hover {
+    transition: transform 0.3s ease;  /* Animation fluide */
+    cursor: pointer;
+}
+
 .img-hover:hover {
-    transform: scale(1.1);
-    transition: transform 0.3s ease;
+    transform: scale(1.1);            /* Zoom avant de 10% */
 }

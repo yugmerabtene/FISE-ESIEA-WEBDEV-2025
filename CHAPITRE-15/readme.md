@@ -6,7 +6,7 @@
    - Le DOM (Document Object Model) représente la structure d'une page HTML sous forme d'arbre d'objets.
    - Il permet la manipulation dynamique de la structure, du style et du contenu d'une page.
 
-     ![image](https://github.com/yugmerabtene/ESIEA-FISE-WEB-2024/assets/3670077/280d1040-3b8c-4dbe-95ca-c2377b9814d4)
+     ![image](https://github.com/yugmerabtene/FISE-ESIEA-WEBDEV-2025/assets/3670077/280d1040-3b8c-4dbe-95ca-c2377b9814d4)
 
 
 #### 1.2 Accès au DOM avec JavaScript

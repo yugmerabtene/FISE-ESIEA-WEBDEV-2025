@@ -41,7 +41,7 @@ HTML est le langage standard pour la création de pages web. Il permet de struct
 - `<address>` : Informations de contact (address)
 - `<cite>` : Titre d'œuvre (citation)
 - `<bdo>` : Inversion de direction du texte (Bi-Directional Override)
-- `<root>` : L'élément racine personnalisé (HTML5+)
+<!-- <root> n'est pas un élément HTML standard -->
 - **`id` et `class`** : Attributs utilisés pour identifier et styliser les éléments HTML.
 
 **Différence entre `id` et `class` :**
@@ -104,8 +104,7 @@ HTML sémantique signifie utiliser des balises qui ont une signification claire,
 - `<article>` : Article indépendant
 - `<aside>` : Contenu secondaire (barre latérale)
 - `<footer>` : Pied de page
-- `<br>` : Saut de ligne
-- `<root>` : Définit un conteneur racine principal pour regrouper tout le contenu HTML
+<!-- `<br>` est un élément de présentation, pas sémantique -->
 
 ---
 # Cours complet sur CSS : Marges, Espacements, Dimensions et Flexbox
@@ -634,4 +633,4 @@ Un **badge rouge "Nouveau"** est ajouté en haut à droite du produit.
 
 
 ## Documentation (L'un des meilleurs développeur frontend spécialisé en CSS):  
-[text](https://www.youtube.com/watch?v=N5wpD9Ov_To)
+[Tutoriel CSS complet - Chaîne YouTube](https://www.youtube.com/watch?v=N5wpD9Ov_To)

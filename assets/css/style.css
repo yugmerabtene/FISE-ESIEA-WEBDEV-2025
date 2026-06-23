@@ -1,5 +1,18 @@
-/* Effet hover : agrandir l'image légèrement */
+/*
+ * FICHIER : assets/css/style.css
+ * RÔLE    : Styles personnalisés pour le site Gaming (démo)
+ * 
+ * Contient l'effet de survol (hover) des images miniatures.
+ * Le reste du style est assuré par Bootstrap 5.3.
+ */
+
+/* Classe utilitaire pour agrandir les images au survol */
+.img-hover {
+    transition: transform 0.3s ease;  /* Animation fluide (0.3s) */
+    cursor: pointer;                   /* Curseur "main" pour indiquer l'interactivité */
+}
+
+/* État au survol : zoom avant de 10 % */
 .img-hover:hover {
     transform: scale(1.1);
-    transition: transform 0.3s ease;
 }

@@ -174,8 +174,8 @@ require 'functions/login.php';
 
 // Gestion de la connexion
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Récupère et sécurise les données du formulaire
-    $username = htmlspecialchars($_POST['username'], ENT_QUOTES, 'UTF-8');
+    // Récupère les données du formulaire
+    $username = $_POST['username'];
     $password = $_POST['password'];
 
     // Vérifie les informations de connexion
@@ -186,7 +186,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     } else {
         // Si la connexion échoue, affiche un message d'erreur
-        echo "<p>Invalid username or password.</p>";
+        $error = "Invalid username or password.";
+    }
+
+    // Affiche le message de succès après redirection depuis register.php
+    if (isset($_SESSION['success_message'])) {
+        echo "<p style='color: green;'>" . htmlspecialchars($_SESSION['success_message']) . "</p>";
+        unset($_SESSION['success_message']);
+    }
+    if (isset($error)) {
+        echo "<p style='color: red;'>" . htmlspecialchars($error) . "</p>";
     }
 }
 ?>

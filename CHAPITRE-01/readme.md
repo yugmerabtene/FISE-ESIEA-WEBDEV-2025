@@ -116,7 +116,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout du code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Installation des dépendances
         run: npm install
